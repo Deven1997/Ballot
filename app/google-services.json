@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "62048105018",
+    "firebase_url": "https://ballot-bca8e.firebaseio.com",
+    "project_id": "ballot-bca8e",
+    "storage_bucket": "ballot-bca8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62048105018:android:b72332bb61b48d04",
+        "android_client_info": {
+          "package_name": "com.example.abc.ballot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62048105018-o70g49m11qeoq50mn6qjo58t7fn3b8p2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.abc.ballot",
+            "certificate_hash": "0aa954df05f0278549796a02b52ee5a76c7d8008"
+          }
+        },
+        {
+          "client_id": "62048105018-sujc65oukt9fn3ihillreb3i9p98g423.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlbmDVS0VhrnHfJW_DnWZ9FihQLS7fv1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62048105018-sujc65oukt9fn3ihillreb3i9p98g423.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
