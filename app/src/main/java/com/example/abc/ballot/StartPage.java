@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class StartPage extends AppCompatActivity {
 
     Button studentbtn, teacherbtn;
-    TextView superadmin;   
+    TextView superadmin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
