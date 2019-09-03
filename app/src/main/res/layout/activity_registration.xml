@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".registration">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginStart="8dp"
@@ -21,6 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#2C877A7A"
             android:orientation="vertical"
             android:paddingLeft="24dp"
             android:paddingTop="56dp"
@@ -41,7 +42,7 @@
                 android:layout_marginTop="8dp">
 
                 <EditText
-                    android:id="@+id/input_teacher_name"
+                    android:id="@+id/edit_postname_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name"
@@ -72,11 +73,11 @@
                 android:layout_marginTop="8dp">
 
                 <EditText
-                    android:id="@+id/enter_email"
+                    android:id="@+id/enter_UCID"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint=" Enter Email"
-                    android:inputType="textEmailAddress" />
+                    android:hint=" Enter UCID"
+                    android:inputType="number" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -88,7 +89,7 @@
                 <Spinner
                     android:id="@+id/spinner1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint=" Select Department"
                     android:inputType="textEmailAddress" />
             </android.support.design.widget.TextInputLayout>
@@ -97,16 +98,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/view5"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"/>
 
-                <EditText
-                    android:id="@+id/input_teach_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Enter Deparment Key"
-                    android:inputType="textPassword" />
-            </android.support.design.widget.TextInputLayout>
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"></android.support.design.widget.TextInputLayout>
+
+            <!-- Password Label -->
+
+            <EditText
+                android:id="@+id/set_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Set Password"
+                android:inputType="textPassword" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -114,8 +123,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp">
             </android.support.design.widget.TextInputLayout>
-
-            <!-- Password Label -->
+            <EditText
+                android:id="@+id/confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="confirm Password"
+                android:inputType="textPassword" />
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -132,6 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
+                android:background="#AE3F663A"
                 android:padding="12dp"
                 android:text="Register" />
 

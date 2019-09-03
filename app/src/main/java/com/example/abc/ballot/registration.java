@@ -22,13 +22,13 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
         openDialog();
 
         goto_loginpage_txt = findViewById(R.id.link_login1);
-        goto_loginpage_txt.setOnClickListener(new View.OnClickListener() {
+       /* goto_loginpage_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
             }
-        });
+        }); */
 
         Spinner spinner = findViewById(R.id.spinner1);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.departments, android.R.layout.simple_spinner_item);

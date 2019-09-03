@@ -2,10 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AdminLogin"
-    android:background="@drawable/startpage">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#2C877A7A"
+    tools:context=".AdminLogin">
 
     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/radiogroup_id"
@@ -31,12 +31,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="40dp"
-            android:buttonTint="#9900cc"
+            android:buttonTint="#88C046"
 
             android:text="   MCA"
-            android:textColor="#ffffff"
+            android:textColor="#103003"
             android:textSize="25sp"
-            android:textStyle="italic" />
+            android:textStyle="normal" />
 
         <RadioButton
             android:id="@+id/radio_it"
@@ -45,12 +45,12 @@
             android:layout_marginLeft="70dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="0dp"
-            android:buttonTint="#9900cc"
+            android:buttonTint="#88C046"
 
             android:text="   IT"
-            android:textColor="#ffffff"
+            android:textColor="#103003"
             android:textSize="25sp"
-            android:textStyle="italic" />
+            android:textStyle="normal" />
 
         <RadioButton
             android:id="@+id/radio_extc"
@@ -58,12 +58,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="12dp"
-            android:buttonTint="#9900cc"
+            android:buttonTint="#88C046"
 
             android:text="   EXTC"
-            android:textColor="#ffffff"
+            android:textColor="#103003"
             android:textSize="25sp"
-            android:textStyle="italic" />
+            android:textStyle="normal" />
 
         <RadioButton
             android:id="@+id/radio_etrx"
@@ -71,12 +71,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="12dp"
-            android:buttonTint="#9900cc"
+            android:buttonTint="#88C046"
 
             android:text="   ETRX"
-            android:textColor="#ffffff"
+            android:textColor="#103003"
             android:textSize="25sp"
-            android:textStyle="italic" />
+            android:textStyle="normal" />
 
         <RadioButton
             android:id="@+id/radio_comps"
@@ -84,12 +84,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="70dp"
             android:layout_marginTop="12dp"
-            android:buttonTint="#9900cc"
+            android:buttonTint="#88C046"
 
             android:text="   COMPS"
-            android:textColor="#ffffff"
+            android:textColor="#103003"
             android:textSize="25sp"
-            android:textStyle="italic" />
+            android:textStyle="normal" />
 
 
     </RadioGroup>
@@ -104,7 +104,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:textColor="#ffffff"
+        android:textColor="#0C0B0B"
         android:textSize="15sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,7 +116,7 @@
 
     <EditText
         android:id="@+id/adminPassword"
-        android:layout_width="wrap_content"
+        android:layout_width="324dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -124,6 +124,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="#000000"
@@ -144,11 +145,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="#AE3F663A"
         android:text="Submit"
-        android:textColor="#ffffff"
-        android:textSize="18dp"
         android:textAlignment="center"
-        android:background="@color/colorPrimary"
+        android:textColor="#0C0B0B"
+        android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.867"

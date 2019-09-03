@@ -10,7 +10,7 @@ public class Registration_Dialogbox extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Information").setMessage("The Registration is only for teachers")
+        builder.setTitle("Information").setMessage("Registration is only for Students")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -15,6 +15,7 @@ public class StartPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
+
         studentbtn = findViewById(R.id.student_btn);
         teacherbtn = findViewById(R.id.teacher_btn);
         superadmin = findViewById(R.id.super_admin_txt);
@@ -22,26 +23,25 @@ public class StartPage extends AppCompatActivity {
         studentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        superadmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
+                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(i);
             }
         });
 
         teacherbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),AdminLogin.class);
-                startActivity(intent);
+                Intent i = new Intent(getApplicationContext(),AdminLogin.class);
+                startActivity(i);
             }
         });
 
+        superadmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }

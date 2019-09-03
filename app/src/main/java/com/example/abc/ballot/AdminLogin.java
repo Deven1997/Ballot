@@ -44,6 +44,6 @@ public class AdminLogin extends AppCompatActivity {
     public void onRadioButtonClicked(int checked)
     {
         radioButton = findViewById(checked);
-        textView.setText("Please Enter"+radioButton.getText()+" Department Password");
+        textView.setText("Please Enter "+radioButton.getText().toString().trim()+" Department Password");
     }
 }
