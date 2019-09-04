@@ -23,24 +23,23 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class registration extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView goto_loginpage_txt;
     Button btn_submit;
     EditText input_name,input_contact,input_ucid,input_password,input_cpassword;
-    Spinner input_department;
     String selected_department;
     View focusView=null;
 
     DatabaseReference databasestudent;
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("student");
+    DatabaseReference reff;
 
 
     @Override
@@ -56,7 +55,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
         input_password = findViewById(R.id.set_password);
         input_cpassword = findViewById(R.id.confirm_password);
 
-        databasestudent = FirebaseDatabase.getInstance().getReference("students");
+
 
         goto_loginpage_txt = findViewById(R.id.link_login1);
         goto_loginpage_txt.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +110,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
         String department = selected_department;
         input_name.setError(null);
         input_password.setError(null);
+        final String u = ucid;
 
         boolean status = true;
         if(TextUtils.isEmpty(name))
@@ -155,6 +155,13 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
             focusView = input_password;
             status = false;
         }
+        else
+            if(pass.length()<6)
+            {
+                Toast.makeText(this, "Password is not Strong.", Toast.LENGTH_SHORT).show();
+                focusView = input_password;
+                status = false;
+            }
 
         if(!TextUtils.isEmpty(cpass))
         {
@@ -180,31 +187,32 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
             databasestudent.child(ucid).setValue(student);
             Toast.makeText(this,"Registration Successful..",Toast.LENGTH_LONG).show(); */
 
-            final Student student = new Student(name,contact,ucid,department,pass);
-            Query query = ref.child("student").orderByChild(ucid).equalTo(ucid);
+            databasestudent = FirebaseDatabase.getInstance().getReference().child("students");
 
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
+           // reff = FirebaseDatabase.getInstance().getReference("student")
+            final Student student = new Student(name,contact,ucid,department,pass);
+
+            databasestudent.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        Toast.makeText(registration.this,"Sorry...Contact Number already exist",Toast.LENGTH_SHORT).show();
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.hasChild(ucid))
+                    {
+                        Toast.makeText(registration.this,"Sorry...User already exist",Toast.LENGTH_SHORT).show();
                         return;
                     }else
                     {
-
-
-                        ref.child(ucid).setValue(student);
-
-                        //   ref.push().child(contact).setValue(info);
+                        databasestudent.child(ucid).setValue(student);
                         Toast.makeText(registration.this, "Information Saved...", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(registration.this, "Something went wrong..", Toast.LENGTH_SHORT).show();
 
                 }
             });
+
         }
     }
 }

@@ -1,38 +1,37 @@
 package com.example.abc.ballot;
 
 public class Student {
-    String s_name,s_contact,s_ucid,s_department,s_password;
+    String name, contact, ucid, department, password;
 
-    public Student()
-    {
+    public Student() {
 
     }
 
-    public Student(String s_name, String s_contact, String s_ucid, String s_department, String s_password) {
-        this.s_name = s_name;
-        this.s_contact = s_contact;
-        this.s_ucid = s_ucid;
-        this.s_department = s_department;
-        this.s_password = s_password;
+    public Student(String name, String contact, String ucid, String department, String password) {
+        this.name = name;
+        this.contact = contact;
+        this.ucid = ucid;
+        this.department = department;
+        this.password = password;
     }
 
-    public String getS_name() {
-        return s_name;
+    public String getName() {
+        return name;
     }
 
-    public String getS_contact() {
-        return s_contact;
+    public String getContact() {
+        return contact;
     }
 
-    public String getS_ucid() {
-        return s_ucid;
+    public String getUcid() {
+        return ucid;
     }
 
-    public String getS_department() {
-        return s_department;
+    public String getDepartment() {
+        return department;
     }
 
-    public String getS_password() {
-        return s_password;
+    public String getPassword() {
+        return password;
     }
 }

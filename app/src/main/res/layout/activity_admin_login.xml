@@ -126,6 +126,7 @@
         android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
+        android:paddingLeft="15dp"
         android:inputType="textPassword"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -133,7 +134,8 @@
         app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.84" />
+        app:layout_constraintVertical_bias="0.84"
+        />
 
     <Button
         android:id="@+id/submit_btn"
