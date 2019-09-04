@@ -42,6 +42,17 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        btn_registration.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),registration.class);
+                startActivity(i);
+            }
+        });
+
+
+
     }
     boolean validateInputFields()
     {
@@ -49,11 +60,18 @@ public class LoginActivity extends AppCompatActivity {
         input_password.setError(null);
         status = true;
         if (!TextUtils.isEmpty(myemail)) {
+
+        }
+        else
+        {
             input_email.setError(getString(R.string.error_invalid_email));
             focusView = input_email;
             status = false;
         }
         if (!TextUtils.isEmpty(mypassword)) {
+
+        }
+        {
             input_password.setError(getString(R.string.error_invalid_password));
             focusView = input_password;
             status  = false;
