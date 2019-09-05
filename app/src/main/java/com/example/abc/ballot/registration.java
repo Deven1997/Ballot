@@ -16,20 +16,12 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.Query;
+
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class registration extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     TextView goto_loginpage_txt;
@@ -39,7 +31,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
     View focusView=null;
 
     DatabaseReference databasestudent;
-    DatabaseReference reff;
+
 
 
     @Override
@@ -110,7 +102,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
         String department = selected_department;
         input_name.setError(null);
         input_password.setError(null);
-        final String u = ucid;
+
 
         boolean status = true;
         if(TextUtils.isEmpty(name))
@@ -178,7 +170,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
             focusView = input_cpassword;
             status = false;
         }
-        if(status==true)
+        if(status)
         {
            /* databasestudent.push();
 
@@ -192,7 +184,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
            // reff = FirebaseDatabase.getInstance().getReference("student")
             final Student student = new Student(name,contact,ucid,department,pass);
 
-            databasestudent.addValueEventListener(new ValueEventListener() {
+            databasestudent.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.hasChild(ucid))
@@ -203,7 +195,11 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
                     {
                         databasestudent.child(ucid).setValue(student);
                         Toast.makeText(registration.this, "Information Saved...", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                        startActivity(i);
                     }
+
+
                 }
 
                 @Override

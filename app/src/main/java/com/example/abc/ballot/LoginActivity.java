@@ -5,12 +5,10 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,11 +18,10 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
 
     Button btn_login,btn_registration;
-    EditText input_id, input_password;
-    View focusView = null;
-    boolean status = true;
+    EditText input_id, input_pass;
+
     String myid,mypassword;
-    String temppassword;
+
 
     DatabaseReference reff;
 
@@ -33,67 +30,46 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
 
-        btn_login = (Button) findViewById(R.id.email_sign_in_button);
-        btn_registration = (Button) findViewById(R.id.registration_btn_loginpage);
+        btn_login = findViewById(R.id.email_sign_in_button);
+        btn_registration = findViewById(R.id.registration_btn_loginpage);
 
 
         input_id = findViewById(R.id.user_id);
-        input_password =  findViewById(R.id.password);
+        input_pass =  findViewById(R.id.password_id);
 
-
-        myid = input_id.getText().toString().trim();
-        mypassword = input_password.getText().toString().trim();
-        reff = FirebaseDatabase.getInstance().getReference().child("students");
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (validateFields()) {
+                reff = FirebaseDatabase.getInstance().getReference().child("students");
+                myid = input_id.getText().toString().trim();
+                mypassword = input_pass.getText().toString().trim();
 
-                    Toast.makeText(LoginActivity.this, "data validate successfully", Toast.LENGTH_SHORT).show();
-                    reff.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.hasChild(myid))
-                            {
+                reff.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnap) {
+                        if (dataSnap.hasChild(myid)) {
+                            Student st = dataSnap.child(myid).getValue(Student.class);
 
-                                reff = FirebaseDatabase.getInstance().getReference().child("students").child(myid);
-
-                                reff.addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        temppassword = dataSnapshot.child("password").getValue().toString();
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-
-                                if (temppassword==mypassword)
-                                {
-                                    Log.i("comparing password","comparing password");
-                                    Toast.makeText(LoginActivity.this, "Login Successful..", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getApplicationContext(),student_homepage.class);
-                                    startActivity(i);
-                                }
-                                else
-                                {
-                                    Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
-                                }
+                            if (st.getPassword().equals(mypassword)) {
+                                Toast.makeText(LoginActivity.this, "Login Successful..", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getApplicationContext(), student_homepage.class);
+                                startActivity(i);
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                             }
-                            else
-                            {
-                                Toast.makeText(LoginActivity.this, "User not found!..", Toast.LENGTH_SHORT).show();
-                            }
+                        } else {
+                            Toast.makeText(LoginActivity.this, "User not found!..", Toast.LENGTH_SHORT).show();
                         }
+                    }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                        }
-                    });
+                    }
+                });
 
-
+            }
             }
         });
 
@@ -108,6 +84,22 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+    }
+    boolean validateFields()
+    {
+       String  tempid = input_id.getText().toString().trim();
+       String temppass = input_pass.getText().toString().trim();
+        if(TextUtils.isEmpty(tempid))
+        {
+            input_id.setError("Required!");
+            return false;
+        }else
+        if(TextUtils.isEmpty(temppass))
+        {
+            input_pass.setError("Required!");
+            return false;
+        }
+        return true;
     }
 
 
