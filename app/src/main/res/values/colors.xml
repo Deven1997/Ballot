@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#4A504E</color>
-    <color name="colorPrimaryDark">#38A620</color>
+    <color name="colorPrimaryDark">#227311</color>
     <color name="tablayoutcolor">#3F663A</color>
     <color name="tablayouttextcolor">#ffffff</color>
     <color name="tablayoutindicatorcolor">#77E60D</color>
     <color name="colorAccent">#9B9697</color>
+    <color name="RedColor">#FF0000</color>
+    <color name="WhiteColor">#ffffff</color>
+    <color name="BlackColor">#000000</color>
 </resources>

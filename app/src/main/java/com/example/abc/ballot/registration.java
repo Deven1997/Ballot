@@ -1,6 +1,9 @@
 package com.example.abc.ballot;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,6 +52,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 
 
 
+
         goto_loginpage_txt = findViewById(R.id.link_login1);
         goto_loginpage_txt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,15 +68,27 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
+        if(!amIConnected())
+        {
+            Toast.makeText(this, "You are offline!, Check Internet Connection", Toast.LENGTH_SHORT).show();
+        }
 
         btn_submit = findViewById(R.id.btn_signup);
-        btn_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               AddStudent();
+            btn_submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!amIConnected())
+                    {
+                        displayInternetConnectivityToast();
+                    }
+                    else {
+                        AddStudent();
+                    }
 
-            }
-        });
+                }
+            });
+
+
     }
 
     public void openDialog()
@@ -211,5 +227,20 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
 
         }
     }
+    private boolean amIConnected()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activNetworkInfo !=null && activNetworkInfo.isConnected();
+    }
+    void displayInternetConnectivityToast()
+    {
+        Toast.makeText(this, "You are offline!, Check Internet Connection", Toast.LENGTH_SHORT).show();
+    }
+
 }
+
+
+
+
 

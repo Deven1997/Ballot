@@ -1,6 +1,9 @@
 package com.example.abc.ballot;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText input_id, input_pass;
 
     String myid,mypassword;
-
+    String myname,myuid;
 
     DatabaseReference reff;
 
@@ -33,56 +36,66 @@ public class LoginActivity extends AppCompatActivity {
         btn_login = findViewById(R.id.email_sign_in_button);
         btn_registration = findViewById(R.id.registration_btn_loginpage);
 
-
         input_id = findViewById(R.id.user_id);
         input_pass =  findViewById(R.id.password_id);
-
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (validateFields()) {
-                reff = FirebaseDatabase.getInstance().getReference().child("students");
-                myid = input_id.getText().toString().trim();
-                mypassword = input_pass.getText().toString().trim();
-
-                reff.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnap) {
-                        if (dataSnap.hasChild(myid)) {
-                            Student st = dataSnap.child(myid).getValue(Student.class);
-
-                            if (st.getPassword().equals(mypassword)) {
-                                Toast.makeText(LoginActivity.this, "Login Successful..", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getApplicationContext(), student_homepage.class);
-                                startActivity(i);
-                            } else {
-                                Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            Toast.makeText(LoginActivity.this, "User not found!..", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-            }
-            }
-        });
-
-        btn_registration.setOnClickListener(new View.OnClickListener()
+        if (!amIConnected())
         {
+            displayInternetConnectivityToast();
+        }
+            btn_login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!amIConnected())
+                    {
+                        displayInternetConnectivityToast();
+                    }
+                    else {
+                    if (validateFields()) {
+                        reff = FirebaseDatabase.getInstance().getReference().child("students");
+                        myid = input_id.getText().toString().trim();
+                        mypassword = input_pass.getText().toString().trim();
+
+                        reff.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnap) {
+                                if (dataSnap.hasChild(myid)) {
+                                    Student st = dataSnap.child(myid).getValue(Student.class);
+                                    myname =  st.getName();
+                                    myuid = st.getUcid();
+
+                                    if (st.getPassword().equals(mypassword)) {
+                                        Toast.makeText(LoginActivity.this, "Login Successful..", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(getApplicationContext(), student_homepage.class);
+                                        /* sending values to student homepage activity */
+                                        i.putExtra("name",myname);
+                                        i.putExtra("uid",myuid);
+                                        startActivity(i);
+                                    } else {
+                                        Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
+                                        input_pass.setHintTextColor(getResources().getColor(R.color.RedColor));
+                                    }
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "User not found!..", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                    }
+                }
+            }
+            });
+
+        btn_registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),registration.class);
+                Intent i = new Intent(getApplicationContext(), registration.class);
                 startActivity(i);
             }
         });
-
-
 
     }
     boolean validateFields()
@@ -101,6 +114,18 @@ public class LoginActivity extends AppCompatActivity {
         }
         return true;
     }
+    private boolean amIConnected()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activNetworkInfo !=null && activNetworkInfo.isConnected();
+    }
+
+    void displayInternetConnectivityToast()
+    {
+        Toast.makeText(this, "You are offline!, Check Internet Connection", Toast.LENGTH_SHORT).show();
+    }
+
 
 
 }

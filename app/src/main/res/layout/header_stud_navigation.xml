@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:padding="20dp"
+    android:background="@drawable/navigation_img">
+
+    <ImageView
+        android:id="@+id/profilePhoto"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:src="@drawable/student_icon" />
+
+    <TextView
+        android:id="@+id/myname_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Name"
+        android:textColor="@color/BlackColor"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"/>
+    <TextView
+        android:id="@+id/myuid_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UID"
+        android:textColor="@color/BlackColor"
+
+        />
+
+</LinearLayout>

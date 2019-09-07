@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/upoloadImage_id"
+        android:icon="@drawable/ic_upload"
+        android:title="Upload Profile Picture">
+    </item>
+    <item
+        android:id="@+id/changepass_id"
+        android:icon="@drawable/ic_lock"
+        android:title="Change Password">
+    </item>
+    <item
+        android:id="@+id/resultmenu_id"
+        android:icon="@drawable/ic_result"
+        android:title="Result">
+    </item>
+    <item
+        android:id="@+id/logoutmenu_id"
+        android:icon="@drawable/ic_logout"
+        android:title="Logout">
+    </item>
+    </group>
+</menu>
