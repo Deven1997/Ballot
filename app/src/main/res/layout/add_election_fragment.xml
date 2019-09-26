@@ -9,27 +9,105 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:foregroundGravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:fitsSystemWindows="true"
+        android:foregroundGravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
             android:background="#2C877A7A"
+            android:gravity="center"
             android:orientation="vertical"
-            android:paddingLeft="24dp"
-            android:paddingTop="56dp"
-            android:paddingRight="24dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="8dp"
+            android:paddingRight="8dp"
             android:weightSum="1">
 
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/radiogrp_class_id"
+                android:layout_width="match_parent"
+
+                android:layout_height="50dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.107">
+
+
+
+                    <RadioButton
+                        android:id="@+id/radio_fy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="3dp"
+                        android:buttonTint="#88C046"
+
+                        android:text=" FY"
+                        android:textColor="#103003"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+
+                    <RadioButton
+                        android:id="@+id/radio_sy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="3dp"
+                        android:buttonTint="#88C046"
+
+                        android:text=" SY"
+                        android:textColor="#103003"
+                        android:textSize="20sp"
+                        android:textStyle="normal" />
+
+                <RadioButton
+                    android:id="@+id/radio_ty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="3dp"
+                    android:buttonTint="#88C046"
+
+                    android:text=" TY"
+                    android:textColor="#103003"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+
+                <RadioButton
+                    android:id="@+id/radio_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="3dp"
+                    android:buttonTint="#88C046"
+
+                    android:text=" ALL"
+                    android:textColor="#103003"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+
+            </RadioGroup>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -38,7 +116,7 @@
                 android:layout_marginTop="8dp">
 
                 <EditText
-                    android:id="@+id/edit_postname_id"
+                    android:id="@+id/edit_title_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -46,22 +124,12 @@
                     android:inputType="textCapWords" />
             </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@+id/addpost_btn"
-                android:layout_width="344dp"
-                android:layout_height="71dp"
-                android:layout_marginTop="20dp"
-                android:background="#AE3F663A"
-                android:gravity="center"
-                android:text="Add Post"
-                android:textAlignment="center"
-                android:textStyle="bold" />
-
             <TextView
+                android:id="@+id/tempid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Enter Student Range :"
+                android:text="Select Student Range :"
                 android:textColor="#100F0F"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -94,7 +162,7 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.826" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
                     android:id="@+id/ETEnterFrom"
@@ -161,24 +229,74 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <Button
-                android:id="@+id/BTN_submit"
-                android:layout_width="235dp"
-                android:layout_height="68dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#AE3F663A"
-                android:clickable="true"
-                android:text="SUBMIT"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.534"
-                app:layout_constraintStart_toStartOf="@+id/TVFrom"
-                app:layout_constraintTop_toTopOf="@+id/TVTo"
-                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/textview_title_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"/>
+
+            <ListView
+                android:id="@+id/list_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </ListView>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+                    android:id="@+id/addpost_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#AE3F663A"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="Add Multiple Post"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <Button
+                    android:id="@+id/BTN_submit"
+                    android:layout_width="170dp"
+                    android:layout_height="65dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#AE3F663A"
+                    android:clickable="true"
+                    android:text="SUBMIT"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/addpost_btn"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+            </android.support.constraint.ConstraintLayout>
+
 
 
         </LinearLayout>

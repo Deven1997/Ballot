@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                         myid = input_id.getText().toString().trim();
                         mypassword = input_pass.getText().toString().trim();
 
+
                         reff.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnap) {

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#2C877A7A"
+    tools:context=".add_post_dailog"
     android:padding="15dp">
 
 
@@ -34,7 +35,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <EditText
-        android:id="@+id/ETAdd_description"
+        android:id="@+id/edit_Add_description"
         android:layout_width="364dp"
         android:layout_height="81dp"
         android:layout_marginStart="8dp"

@@ -25,6 +25,12 @@
         <item>COMPS</item>
     </string-array>
 
+    <string-array name="CLASSES">
+        <item>FY</item>
+        <item>SY</item>
+        <item>TY</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
