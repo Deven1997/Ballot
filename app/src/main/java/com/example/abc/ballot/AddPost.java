@@ -1,5 +1,6 @@
 package com.example.abc.ballot;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -49,7 +50,7 @@ public class AddPost extends AppCompatActivity {
         from_uid = getIntent().getExtras().getString("from");
         to_uid = getIntent().getExtras().getString("to");
 
-        election_name.setText(from_uid);
+        election_name.setText(name);
 
         linearLayout = findViewById(R.id.addpost_linear_layout_id);
         linearLayout2 = findViewById(R.id.addpost_linear_layout_id_2);
@@ -68,6 +69,7 @@ public class AddPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final TextView rowTextView = new TextView(AddPost.this);
+
                 String pname = post_name.getText().toString().trim();
                 String pdisc = post_discription.getText().toString().trim();
 
@@ -119,11 +121,16 @@ public class AddPost extends AppCompatActivity {
                             submit_button.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
                             layoutParams.gravity = Gravity.BOTTOM;
                             layoutParams.gravity = Gravity.RIGHT;
+                            layoutParams.rightMargin = 8;
                             layoutParams.bottomMargin = 5;
                             linearLayout2.addView(submit_button,layoutParams);
                         }
 
                         Toast.makeText(AddPost.this, "Post added Successfully...", Toast.LENGTH_SHORT).show();
+                        post_name.setText(null);
+                        post_discription.setText(null);
+                        submit_button.requestFocus();
+
                     }
 
                 }
@@ -143,6 +150,10 @@ public class AddPost extends AppCompatActivity {
                 election_reff.child(id).setValue(elect);
 
                 Toast.makeText(AddPost.this, "Election added Successfully..", Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent(getApplicationContext(),Admin_homepage.class);
+                startActivity(i);
+
             }
         });
     }

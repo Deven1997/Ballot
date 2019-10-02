@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,21 +25,19 @@ import android.widget.Toast;
 
 public class student_homepage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Button add_description_btn;
-    DrawerLayout mDrawerLayout;
+    private DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mToggle;
     ImageView profilePhoto;
     NavigationView navigationView;
-
-
-    private static final int IMAGE_PICK_CODE=1000;
-    private static final int PERMISSION_CODE=1001;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_homepage);
+
+        Toolbar toolbar = findViewById(R.id.stud_homepage_toolbar_id);
+        setSupportActionBar(toolbar);
 
         /* get values from login activity*/
         String name = getIntent().getExtras().getString("name");
@@ -48,10 +47,10 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
 
 
         mDrawerLayout = findViewById(R.id.drawer_layout_id);
-        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+
+        mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         navigationView = findViewById(R.id.nav1_id);
 
@@ -88,93 +87,27 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mToggle.onOptionsItemSelected(item))
-        {
-            return true;
-        }
 
 
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.upoloadImage_id)
+        switch (item.getItemId())
         {
-            Toast.makeText(this, "Upload image from Gallery", Toast.LENGTH_SHORT).show();
-        }
-        else if (id==R.id.changepass_id)
-        {
-            Toast.makeText(this, "Change Password", Toast.LENGTH_SHORT).show();
-        }
-        else if (id==R.id.resultmenu_id)
-        {
-            Toast.makeText(this, "Result manu", Toast.LENGTH_SHORT).show();
-        }
-        else if(id==R.id.logoutmenu_id)
-        {
-            Toast.makeText(this, "Logout Menu", Toast.LENGTH_SHORT).show();
+            case R.id.uploadImage_id:
+                Toast.makeText(this, "image upload", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.changepass_id:
+                Toast.makeText(this, "change password", Toast.LENGTH_SHORT).show();
+                break;
+            case  R.id.resultmenu_id:
+                Toast.makeText(this, "Result", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.logoutmenu_id:
+                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+                break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
-    }
-
-    private void uploadImage()
-    {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkCallingOrSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                //permission not granted,request it
-                String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
-                //show popup for runtime permission
-                requestPermissions(permissions, PERMISSION_CODE);
-            } else {
-                //permission already granted
-                pickImageFromGallery();
-            }
-        } else {
-            //System os is less than marshmallow
-            pickImageFromGallery();
-        }
-    }
-
-    private void pickImageFromGallery() {
-        //intent to pick image
-        Intent intent=new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent,IMAGE_PICK_CODE);
-
-    }
-
-    //handle result of runtime permission
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch(requestCode){
-            case PERMISSION_CODE:{
-                if(grantResults.length >0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                    //permission was granted
-                    pickImageFromGallery();
-                }
-                else{
-                    //permission was denied
-                    Toast.makeText(this, "Permission Denied...", Toast.LENGTH_SHORT).show();
-                }
-            }
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(resultCode==RESULT_OK && requestCode==IMAGE_PICK_CODE){
-            //set image to image View
-            profilePhoto.setImageURI(data.getData());
-        }
     }
 }

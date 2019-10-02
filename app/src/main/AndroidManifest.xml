@@ -34,7 +34,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".registration" />
         <activity android:name=".Admin_homepage" />
-        <activity android:name=".student_homepage" />
+        <activity android:name=".student_homepage"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".candidate_data" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".AddPost" />

@@ -6,22 +6,25 @@
     android:id="@+id/drawer_layout_id"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".student_homepage">
+    tools:context=".student_homepage"
+    tools:openDrawer="start">
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav1_id"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:background="@color/WhiteColor"
-        app:itemIconTint="@color/colorPrimary"
-        app:headerLayout="@layout/header_stud_navigation"
-        app:menu="@menu/stud_home_drawermenu"
-        android:layout_gravity="start">
 
-    </android.support.design.widget.NavigationView>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/stud_homepage_toolbar_id"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimaryDark"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/Theme.AppCompat.Light"
+            android:elevation="4dp">
+        </android.support.v7.widget.Toolbar>
+
 
         <Button
             android:id="@+id/BTN_adddescription"
@@ -36,5 +39,18 @@
 
     </LinearLayout>
 
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav1_id"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@color/WhiteColor"
+        app:itemIconTint="@color/colorPrimary"
+        app:itemTextColor="@color/BlackColor"
+        app:headerLayout="@layout/header_stud_navigation"
+        app:menu="@menu/stud_home_drawer_menu"
+
+        android:layout_gravity="start">
+
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>

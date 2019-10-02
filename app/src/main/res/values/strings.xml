@@ -16,6 +16,10 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="upload_profile_picture">Upload Profile Picture</string>
+    <string name="change_password">Change Password</string>
+    <string name="result">Result</string>
+    <string name="logout">Logout</string>
 
     <string-array name="departments">
         <item>MCA</item>

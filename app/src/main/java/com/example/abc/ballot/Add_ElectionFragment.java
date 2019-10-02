@@ -16,6 +16,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 
 public class Add_ElectionFragment extends Fragment{
     View view;
@@ -28,6 +34,10 @@ public class Add_ElectionFragment extends Fragment{
 
     String checked_class = "None";
     String fromUID,toUID;
+
+    DatabaseReference database_list_reff;
+
+
 
     public Add_ElectionFragment() {
     }
@@ -42,8 +52,7 @@ public class Add_ElectionFragment extends Fragment{
         start_uid = view.findViewById(R.id.start_uid_id);
         end_uid = view.findViewById(R.id.end_uid_id);
 
-        fromUID = start_uid.getText().toString().trim();
-        toUID = end_uid.getText().toString().trim();
+
 
         class_radiogrp = view.findViewById(R.id.radiogrp_class_id);
         class_radiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -60,12 +69,29 @@ public class Add_ElectionFragment extends Fragment{
         addpostbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                fromUID = start_uid.getText().toString().trim();
+                toUID = end_uid.getText().toString().trim();
+
                 Intent i = new Intent(getActivity(),AddPost.class);
                 i.putExtra("title",election_title.getText().toString());
                 i.putExtra("class_name",checked_class);
                 i.putExtra("from",fromUID);
                 i.putExtra("to",toUID);
                 startActivity(i);
+            }
+        });
+
+        database_list_reff = FirebaseDatabase.getInstance().getReference().child("department").child("election");
+        database_list_reff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                     
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
