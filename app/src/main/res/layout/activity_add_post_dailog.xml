@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#2C877A7A"
-    tools:context=".add_post_dailog"
+
     android:padding="15dp">
 
 

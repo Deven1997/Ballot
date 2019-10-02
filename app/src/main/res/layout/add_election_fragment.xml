@@ -24,8 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
-            android:background="#2C877A7A"
             android:gravity="center"
+
             android:orientation="vertical"
             android:paddingLeft="8dp"
             android:paddingTop="8dp"
@@ -33,7 +33,8 @@
             android:weightSum="1">
 
 
-            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            <RadioGroup
+                xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/radiogrp_class_id"
                 android:layout_width="match_parent"
 
@@ -54,7 +55,7 @@
 
 
 
-                    <RadioButton
+                <RadioButton
                         android:id="@+id/radio_fy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -68,11 +69,11 @@
                         android:textStyle="normal" />
 
 
-                    <RadioButton
+                <RadioButton
                         android:id="@+id/radio_sy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="55dp"
                         android:layout_marginTop="3dp"
                         android:buttonTint="#88C046"
 
@@ -85,7 +86,7 @@
                     android:id="@+id/radio_ty"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="55dp"
                     android:layout_marginTop="3dp"
                     android:buttonTint="#88C046"
 
@@ -94,18 +95,6 @@
                     android:textSize="20sp"
                     android:textStyle="normal" />
 
-                <RadioButton
-                    android:id="@+id/radio_all"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="3dp"
-                    android:buttonTint="#88C046"
-
-                    android:text=" ALL"
-                    android:textColor="#103003"
-                    android:textSize="20sp"
-                    android:textStyle="normal" />
 
             </RadioGroup>
 
@@ -128,7 +117,7 @@
                 android:id="@+id/tempid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="30dp"
                 android:text="Select Student Range :"
                 android:textColor="#100F0F"
                 android:textSize="24sp"
@@ -141,6 +130,7 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center">
 
                 <TextView
@@ -165,7 +155,7 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <EditText
-                    android:id="@+id/ETEnterFrom"
+                    android:id="@+id/start_uid_id"
                     android:layout_width="97dp"
                     android:layout_height="42dp"
                     android:layout_marginStart="8dp"
@@ -176,7 +166,7 @@
                     android:layout_marginBottom="8dp"
                     android:ems="10"
                     android:hint="2018450001"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +197,7 @@
                     app:layout_constraintVertical_bias="1.0" />
 
                 <EditText
-                    android:id="@+id/ETEnterTo"
+                    android:id="@+id/end_uid_id"
                     android:layout_width="124dp"
                     android:layout_height="45dp"
                     android:layout_marginStart="8dp"
@@ -218,7 +208,7 @@
                     android:layout_marginBottom="8dp"
                     android:ems="10"
                     android:hint="2018450020"
-                    android:inputType="number"
+                    android:inputType="text"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -230,74 +220,24 @@
             </android.support.constraint.ConstraintLayout>
 
 
-            <TextView
-                android:id="@+id/textview_title_id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:textStyle="bold"/>
-
-            <ListView
-                android:id="@+id/list_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </ListView>
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                >
-
                 <Button
                     android:id="@+id/addpost_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="65dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginRight="10dp"
                     android:layout_marginBottom="8dp"
                     android:background="#AE3F663A"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:text="Add Multiple Post"
+                    android:layout_gravity="end"
+                    android:text="Next"
                     android:textAlignment="center"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
-
-                <Button
-                    android:id="@+id/BTN_submit"
-                    android:layout_width="170dp"
-                    android:layout_height="65dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="#AE3F663A"
-                    android:clickable="true"
-                    android:text="SUBMIT"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/addpost_btn"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.0" />
-
-            </android.support.constraint.ConstraintLayout>
-
-
+                     />
 
         </LinearLayout>
 

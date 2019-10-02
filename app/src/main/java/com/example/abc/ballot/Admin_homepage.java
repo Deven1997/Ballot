@@ -13,12 +13,15 @@ import android.widget.TableLayout;
         private TabLayout tabLayout;
         private ViewPager viewPager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_homepage);
         tabLayout = findViewById(R.id.tablayout_id);
         viewPager = findViewById(R.id.pager_id);
+
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         //adding fragments
         adapter.AddFragments(new ElectionList(),"Election List");
