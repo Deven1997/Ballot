@@ -25,6 +25,8 @@ public class LoginActivity extends AppCompatActivity {
 
     String myid,mypassword;
     String myname,myuid;
+    String abcdef;
+    // Hello github
 
     DatabaseReference reff;
 
