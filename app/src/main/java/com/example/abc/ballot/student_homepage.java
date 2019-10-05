@@ -30,6 +30,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
     ImageView profilePhoto;
     NavigationView navigationView;
     //github setting
+    //kajal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
