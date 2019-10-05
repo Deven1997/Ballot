@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class ResultPage extends AppCompatActivity {
-    //Kajal
+    //Kajal jj
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
