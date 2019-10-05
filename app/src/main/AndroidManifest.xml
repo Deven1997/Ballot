@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.abc.ballot">
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -34,12 +33,13 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".registration" />
         <activity android:name=".Admin_homepage" />
-        <activity android:name=".student_homepage"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".student_homepage"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".candidate_data" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".AddPost" />
-        <activity android:name=".ResultPage"></activity>
+        <activity android:name=".ResultPage" />
     </application>
 
 </manifest>

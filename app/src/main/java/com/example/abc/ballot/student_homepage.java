@@ -29,7 +29,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
     ActionBarDrawerToggle mToggle;
     ImageView profilePhoto;
     NavigationView navigationView;
-
+    //github setting
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
