@@ -20,8 +20,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class student_homepage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Button add_description_btn;
@@ -29,8 +39,12 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
     ActionBarDrawerToggle mToggle;
     ImageView profilePhoto;
     NavigationView navigationView;
-    //github setting
-    //kajal
+    ListView ElectionlistView;
+    String uid;
+    List<election> elelist;
+
+    DatabaseReference student_db_reff;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +56,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
 
         /* get values from login activity*/
         String name = getIntent().getExtras().getString("name");
-        String uid = getIntent().getExtras().getString("uid");
+        uid = getIntent().getExtras().getString("uid");
 
         /* setting name and ucid to header of navigation bar */
 
@@ -75,8 +89,33 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
                 startActivity(i);
             }
         });
+        ElectionlistView=findViewById(R.id.ListView1);
+        elelist=new ArrayList<>();
+        student_db_reff= FirebaseDatabase.getInstance().getReference().child("department").child("election");
+
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart( );
+        student_db_reff.addValueEventListener( new ValueEventListener( ) {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                elelist.clear();
+                for(DataSnapshot electsnap: dataSnapshot.getChildren()){
+                    election e=electsnap.getValue(election.class);
+                    elelist.add(e);
+                    election_listview_adapter adapter=new election_listview_adapter(student_homepage.this,elelist);
+                    ElectionlistView.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+    }
 
     @Override
     public void onBackPressed() {
@@ -96,15 +135,22 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         {
             case R.id.uploadImage_id:
                 Toast.makeText(this, "image upload", Toast.LENGTH_SHORT).show();
+
                 break;
             case R.id.changepass_id:
                 Toast.makeText(this, "change password", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(getApplicationContext(),change_password.class);
+                intent.putExtra("uid1",uid);
+                startActivity(intent);
                 break;
             case  R.id.resultmenu_id:
                 Toast.makeText(this, "Result", Toast.LENGTH_SHORT).show();
+                Intent i=new Intent(getApplicationContext(),ResultPage.class);
+                startActivity(i);
                 break;
             case R.id.logoutmenu_id:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+
                 break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);

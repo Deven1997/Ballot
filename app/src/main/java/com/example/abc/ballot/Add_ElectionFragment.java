@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
+//Teacher can add multiple elections
 public class Add_ElectionFragment extends Fragment{
     View view;
     Button addpostbtn;

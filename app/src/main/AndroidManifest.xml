@@ -17,6 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Upload_profile"></activity>
+        <activity android:name=".change_password" />
         <activity
             android:name=".StartPage"
             android:label="@string/app_name"
