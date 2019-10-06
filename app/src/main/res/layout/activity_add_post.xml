@@ -58,6 +58,7 @@
         android:lines="2"
         />
 
+
     <Button
         android:id="@+id/add_button_id"
         android:layout_width="wrap_content"
@@ -93,5 +94,15 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/spinner2"
+        android:textAlignment="center"
+        android:outlineSpotShadowColor="@color/BlackColor">
+
+    </Spinner>
 
 </LinearLayout>

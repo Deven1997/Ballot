@@ -73,8 +73,10 @@ public class AdminLogin extends AppCompatActivity {
 
                             if(validPass(dept_checked.toLowerCase(),deptPass,d))
                             {
+
                                 Toast.makeText(AdminLogin.this, "Login Successfully..", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(),Admin_homepage.class);
+                                intent.putExtra("dept_n",dept_checked);
                                 startActivity(intent);
                             }
                             else

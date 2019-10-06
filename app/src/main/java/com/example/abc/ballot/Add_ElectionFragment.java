@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,11 +37,17 @@ public class Add_ElectionFragment extends Fragment{
     String checked_class = "None";
     String fromUID,toUID;
 
+    String dept;
+
     DatabaseReference database_list_reff;
 
 
-
     public Add_ElectionFragment() {
+    }
+
+    void putArgu(Bundle b)
+    {
+        dept = b.getString("dept_name");
     }
 
     @Nullable
@@ -54,6 +61,12 @@ public class Add_ElectionFragment extends Fragment{
         end_uid = view.findViewById(R.id.end_uid_id);
 
 
+//
+//        if(getArguments() != null)
+//        {
+//            dept = getArguments().getString("dept_name");
+//        }
+
 
         class_radiogrp = view.findViewById(R.id.radiogrp_class_id);
         class_radiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -65,6 +78,7 @@ public class Add_ElectionFragment extends Fragment{
             }
         });
 
+
         addpostbtn = view.findViewById(R.id.addpost_btn);
 
         addpostbtn.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +87,9 @@ public class Add_ElectionFragment extends Fragment{
 
                 fromUID = start_uid.getText().toString().trim();
                 toUID = end_uid.getText().toString().trim();
+
+
+                Toast.makeText(getActivity(), dept, Toast.LENGTH_SHORT).show();
 
                 Intent i = new Intent(getActivity(),AddPost.class);
                 i.putExtra("title",election_title.getText().toString());
