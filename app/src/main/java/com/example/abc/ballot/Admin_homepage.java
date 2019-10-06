@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 
     public class Admin_homepage extends AppCompatActivity {
@@ -19,6 +20,8 @@ import android.os.Bundle;
         setContentView(R.layout.activity_admin_homepage);
         tabLayout = findViewById(R.id.tablayout_id);
         viewPager = findViewById(R.id.pager_id);
+
+
 
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());

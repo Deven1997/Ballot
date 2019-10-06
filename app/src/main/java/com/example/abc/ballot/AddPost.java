@@ -5,9 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +20,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class AddPost extends AppCompatActivity {
+public class AddPost extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     Button addButton;
     EditText post_name,post_discription;
     TextView postlist_textView,election_name;
+
+    String selected_department2;
 
 
     HashMap<String,String> map = new HashMap<>();
@@ -31,6 +36,7 @@ public class AddPost extends AppCompatActivity {
 
 
     DatabaseReference election_reff;
+    DatabaseReference get_deptname_reff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +67,12 @@ public class AddPost extends AppCompatActivity {
         addButton = findViewById(R.id.add_button_id);
 
         final Button submit_button = new Button(AddPost.this);
+
+        Spinner spi = findViewById(R.id.spinner2);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.departments2, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spi.setAdapter(adapter);
+        spi.setOnItemSelectedListener(this);
 
 
 
@@ -138,6 +150,7 @@ public class AddPost extends AppCompatActivity {
         });
 
 
+
         election_reff = FirebaseDatabase.getInstance().getReference().child("department").child("election");
 
         submit_button.setOnClickListener(new View.OnClickListener() {
@@ -147,14 +160,31 @@ public class AddPost extends AppCompatActivity {
 
                 election elect = new election(class_name,name,from_uid,to_uid,map);
 
-                election_reff.child(id).setValue(elect);
+                if(selected_department2.equals("Select Department"))
+                {
+                    Toast.makeText(AddPost.this, "Please select Department", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    election_reff.child(id).setValue(elect);
 
-                Toast.makeText(AddPost.this, "Election added Successfully..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddPost.this, "Election added Successfully..", Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(getApplicationContext(),Admin_homepage.class);
-                startActivity(i);
+                    Intent i = new Intent(getApplicationContext(),Admin_homepage.class);
+                    startActivity(i);
+                }
 
             }
         });
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        selected_department2 = parent.getItemAtPosition(position).toString();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
