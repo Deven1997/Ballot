@@ -29,14 +29,6 @@
         <item>COMPS</item>
     </string-array>
 
-    <string-array name="departments2">
-        <item>Select Department</item>
-        <item>MCA</item>
-        <item>EXTC</item>
-        <item>ETRX</item>
-        <item>IT</item>
-        <item>COMPS</item>
-    </string-array>
 
     <string-array name="CLASSES">
         <item>FY</item>

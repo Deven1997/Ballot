@@ -40,7 +40,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
     ImageView profilePhoto;
     NavigationView navigationView;
     ListView ElectionlistView;
-    String uid;
+    String uid,mydept;
     List<election> elelist;
 
     DatabaseReference student_db_reff;
@@ -57,6 +57,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         /* get values from login activity*/
         String name = getIntent().getExtras().getString("name");
         uid = getIntent().getExtras().getString("uid");
+        mydept = getIntent().getExtras().getString("dept");
 
         /* setting name and ucid to header of navigation bar */
 
@@ -91,7 +92,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         });
         ElectionlistView=findViewById(R.id.ListView1);
         elelist=new ArrayList<>();
-        student_db_reff= FirebaseDatabase.getInstance().getReference().child("department").child("election");
+        student_db_reff= FirebaseDatabase.getInstance().getReference().child("department").child("election").child(mydept);
 
     }
 

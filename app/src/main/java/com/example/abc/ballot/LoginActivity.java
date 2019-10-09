@@ -1,5 +1,6 @@
 package com.example.abc.ballot;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -28,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     String abcdef;
     // Hello github
 
+    ProgressDialog progress;
+
     DatabaseReference reff;
 
     @Override
@@ -37,6 +40,15 @@ public class LoginActivity extends AppCompatActivity {
 
         btn_login = findViewById(R.id.email_sign_in_button);
         btn_registration = findViewById(R.id.registration_btn_loginpage);
+
+
+        progress = new ProgressDialog(this);
+        progress.setTitle("Authentication..!!");
+        progress.setMessage("Please Wait!!");
+        progress.setCancelable(true);
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+
 
         input_id = findViewById(R.id.user_id);
         input_pass =  findViewById(R.id.password_id);
@@ -52,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                         displayInternetConnectivityToast();
                     }
                     else {
+                        progress.show();
                     if (validateFields()) {
                         reff = FirebaseDatabase.getInstance().getReference().child("students");
                         myid = input_id.getText().toString().trim();
@@ -65,19 +78,24 @@ public class LoginActivity extends AppCompatActivity {
                                     Student st = dataSnap.child(myid).getValue(Student.class);
                                     myname =  st.getName();
                                     myuid = st.getUcid();
+                                    String mydept = st.getDepartment();
 
                                     if (st.getPassword().equals(mypassword)) {
+                                        progress.cancel();
                                         Toast.makeText(LoginActivity.this, "Login Successful..", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(getApplicationContext(), student_homepage.class);
                                         /* sending values to student homepage activity */
                                         i.putExtra("name",myname);
                                         i.putExtra("uid",myuid);
+                                        i.putExtra("dept",mydept);
                                         startActivity(i);
                                     } else {
+                                        progress.cancel();
                                         Toast.makeText(LoginActivity.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
                                         input_pass.setHintTextColor(getResources().getColor(R.color.RedColor));
                                     }
                                 } else {
+                                    progress.cancel();
                                     Toast.makeText(LoginActivity.this, "User not found!..", Toast.LENGTH_SHORT).show();
                                 }
                             }

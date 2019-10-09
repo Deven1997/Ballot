@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Calendar;
 
 
 //Teacher can add multiple elections
@@ -45,10 +48,7 @@ public class Add_ElectionFragment extends Fragment{
     public Add_ElectionFragment() {
     }
 
-    void putArgu(Bundle b)
-    {
-        dept = b.getString("dept_name");
-    }
+
 
     @Nullable
     @Override
@@ -61,12 +61,12 @@ public class Add_ElectionFragment extends Fragment{
         end_uid = view.findViewById(R.id.end_uid_id);
 
 
-//
-//        if(getArguments() != null)
-//        {
-//            dept = getArguments().getString("dept_name");
-//        }
+        if(getArguments().getString("dept_n") != null)
+        {
+            dept = getArguments().getString("dept_n");
+        }
 
+        Toast.makeText(getActivity(), dept, Toast.LENGTH_SHORT).show();
 
         class_radiogrp = view.findViewById(R.id.radiogrp_class_id);
         class_radiogrp.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -79,6 +79,10 @@ public class Add_ElectionFragment extends Fragment{
         });
 
 
+        CalendarView cal = new CalendarView(getContext());
+        cal.setDate(Calendar.getInstance().getTimeInMillis(),false,true);
+
+
         addpostbtn = view.findViewById(R.id.addpost_btn);
 
         addpostbtn.setOnClickListener(new View.OnClickListener() {
@@ -89,29 +93,17 @@ public class Add_ElectionFragment extends Fragment{
                 toUID = end_uid.getText().toString().trim();
 
 
-                Toast.makeText(getActivity(), dept, Toast.LENGTH_SHORT).show();
-
                 Intent i = new Intent(getActivity(),AddPost.class);
                 i.putExtra("title",election_title.getText().toString());
                 i.putExtra("class_name",checked_class);
                 i.putExtra("from",fromUID);
                 i.putExtra("to",toUID);
+                i.putExtra("dept_name",dept);
                 startActivity(i);
             }
         });
 
-        database_list_reff = FirebaseDatabase.getInstance().getReference().child("department").child("election");
-        database_list_reff.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                     
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         return view;
     }

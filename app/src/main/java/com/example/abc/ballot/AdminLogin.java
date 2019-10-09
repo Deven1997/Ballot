@@ -1,5 +1,6 @@
 package com.example.abc.ballot;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,8 @@ public class AdminLogin extends AppCompatActivity {
 
     RadioGroup radioGroup;
     RadioButton radioButton;
+
+    ProgressDialog progress;
 
     TextView textView;
     Button submitButton;
@@ -52,6 +55,15 @@ public class AdminLogin extends AppCompatActivity {
             }
         });
 
+
+
+        progress = new ProgressDialog(this);
+        progress.setTitle("Authentication..!!");
+        progress.setMessage("Please Wait!!");
+        progress.setCancelable(true);
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+
         submitButton = findViewById(R.id.submit_btn);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +76,8 @@ public class AdminLogin extends AppCompatActivity {
                 }
                 else
                 {
+                    progress.show();
+
                     admin_db_reff = FirebaseDatabase.getInstance().getReference().child("department");
 
                     admin_db_reff.addValueEventListener(new ValueEventListener() {
@@ -74,15 +88,18 @@ public class AdminLogin extends AppCompatActivity {
                             if(validPass(dept_checked.toLowerCase(),deptPass,d))
                             {
 
-                                Toast.makeText(AdminLogin.this, "Login Successfully..", Toast.LENGTH_SHORT).show();
+                                progress.cancel();
+                                //Toast.makeText(AdminLogin.this, "Login Successfully..", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(),Admin_homepage.class);
                                 intent.putExtra("dept_n",dept_checked);
                                 startActivity(intent);
                             }
                             else
                             {
+                                progress.cancel();
                                 Toast.makeText(AdminLogin.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                             }
+
                         }
 
                         @Override
