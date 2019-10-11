@@ -166,7 +166,8 @@
                     android:layout_marginBottom="8dp"
                     android:ems="10"
                     android:hint="2018450001"
-                    android:inputType="text"
+                    android:inputType="number"
+                    android:maxLength="10"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -208,7 +209,8 @@
                     android:layout_marginBottom="8dp"
                     android:ems="10"
                     android:hint="2018450020"
-                    android:inputType="text"
+                    android:inputType="number"
+                    android:maxLength="10"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -220,14 +222,24 @@
             </android.support.constraint.ConstraintLayout>
 
 
-                <CalendarView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/calender_id">
+            <Button
+                android:id="@+id/set_date_tbn_id"
+                android:layout_width="116dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="#AE3F663A"
+                android:text="Select Date " />
 
-                </CalendarView>
 
-                <Button
+
+            <TextView
+                android:id="@+id/TVSelectedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Selected Date" />
+
+            <Button
                     android:id="@+id/addpost_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="65dp"

@@ -9,4 +9,10 @@
     <color name="RedColor">#FF0000</color>
     <color name="WhiteColor">#ffffff</color>
     <color name="BlackColor">#000000</color>
+
+    <color name="MyBgColor">#FFFBE6</color>
+    <color name="MyBtnColor">#37966F</color>
+    <color name="Mytabcolor">#356859</color>
+    <color name="MyTitle">#FD5523</color>
+    <color name="MyTitleBG">#B9E4C9</color>
 </resources>

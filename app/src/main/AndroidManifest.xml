@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Candidate_profile"></activity>
+        <activity android:name=".Election_profile"></activity>
         <activity android:name=".Upload_profile" />
         <activity android:name=".change_password" />
         <activity

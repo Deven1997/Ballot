@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartPage"
-    android:background="@drawable/startpage">
+    android:background="@drawable/start5"
+    tools:context=".StartPage">
 
     <Button
         android:id="@+id/student_btn"
@@ -19,9 +19,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
 
-        android:background="#a887f14e"
+        android:background="#AE3F663A"
         android:text="Student"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/BlackColor"
 
         android:textSize="30sp"
         android:textStyle="bold"
@@ -44,9 +44,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
 
-        android:background="#a887f14e"
+        android:background="#AE3F663A"
         android:text="Teacher"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/BlackColor"
         android:textSize="30sp"
         android:textStyle="bold"
         android:typeface="serif"
@@ -68,7 +68,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Super Admin !"
-        android:textColor="#ffffff"
+        android:textColor="@color/BlackColor"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

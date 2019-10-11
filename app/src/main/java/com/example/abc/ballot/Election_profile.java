@@ -3,11 +3,11 @@ package com.example.abc.ballot;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class Candidate_profile extends AppCompatActivity {
+public class Election_profile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_candidate_profile );
+        setContentView( R.layout.activity_election_profile );
     }
 }

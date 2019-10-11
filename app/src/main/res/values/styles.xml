@@ -18,5 +18,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    
+    <style name="MyCalender">
+        <item name="android:selectedWeekBackgroundColor">@color/colorPrimaryDark</item>
+        <item name="android:focusedMonthDateColor">@color/colorPrimaryDark</item>
+        <item name="android:weekDayTextAppearance">@color/colorPrimaryDark</item>
+    </style>
 
 </resources>

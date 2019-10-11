@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -43,7 +44,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
     String uid,mydept;
     List<election> elelist;
 
-    DatabaseReference student_db_reff;
+    DatabaseReference student_db_reff, getStudent_db_reff2;
 
 
     @Override
@@ -94,7 +95,21 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         elelist=new ArrayList<>();
         student_db_reff= FirebaseDatabase.getInstance().getReference().child("department").child("election").child(mydept);
 
+        ElectionlistView.setOnItemClickListener( new AdapterView.OnItemClickListener( ) {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Toast.makeText( student_homepage.this, "position"+i, Toast.LENGTH_SHORT ).show( );
+
+//                Intent intent = new Intent( getApplicationContext(),Election_profile.class );
+//
+//                startActivity( intent);
+
+            }
+        } );
+
     }
+
 
     @Override
     protected void onStart() {
@@ -108,6 +123,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
                     elelist.add(e);
                     election_listview_adapter adapter=new election_listview_adapter(student_homepage.this,elelist);
                     ElectionlistView.setAdapter(adapter);
+
                 }
             }
 
@@ -117,6 +133,8 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
             }
         } );
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -135,7 +153,9 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         switch (item.getItemId())
         {
             case R.id.uploadImage_id:
-                Toast.makeText(this, "image upload", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Upload your profile ", Toast.LENGTH_SHORT).show();
+                Intent i=new Intent( getApplicationContext(),Upload_profile.class );
+                startActivity( i );
 
                 break;
             case R.id.changepass_id:
@@ -146,8 +166,8 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
                 break;
             case  R.id.resultmenu_id:
                 Toast.makeText(this, "Result", Toast.LENGTH_SHORT).show();
-                Intent i=new Intent(getApplicationContext(),ResultPage.class);
-                startActivity(i);
+                Intent i1=new Intent(getApplicationContext(),ResultPage.class);
+                startActivity(i1);
                 break;
             case R.id.logoutmenu_id:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
