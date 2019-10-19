@@ -33,7 +33,7 @@ public class election_listview_adapter extends ArrayAdapter<election> {
         View listViewItem = inflatera2.inflate(R.layout.election_list,null,true);
 
         TextView textViewTitle = listViewItem.findViewById(R.id.tv_title_id);
-        TextView textViewclassname = listViewItem.findViewById(R.id.tv_class_name_id);;
+        TextView textViewclassname = listViewItem.findViewById(R.id.tv_class_name_id);
 
         election elec = election_list.get(position);
         textViewTitle.setText(elec.getElection_name());

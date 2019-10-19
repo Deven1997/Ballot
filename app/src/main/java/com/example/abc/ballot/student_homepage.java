@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -31,11 +32,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class student_homepage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    Button add_description_btn;
     private DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mToggle;
     ImageView profilePhoto;
@@ -43,6 +44,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
     ListView ElectionlistView;
     String uid,mydept;
     List<election> elelist;
+    election obj;
 
     DatabaseReference student_db_reff, getStudent_db_reff2;
 
@@ -83,27 +85,25 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        add_description_btn = findViewById(R.id.BTN_adddescription);
-        add_description_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),candidate_data.class);
-                startActivity(i);
-            }
-        });
+
         ElectionlistView=findViewById(R.id.ListView1);
         elelist=new ArrayList<>();
         student_db_reff= FirebaseDatabase.getInstance().getReference().child("department").child("election").child(mydept);
 
         ElectionlistView.setOnItemClickListener( new AdapterView.OnItemClickListener( ) {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
 
                 Toast.makeText( student_homepage.this, "position"+i, Toast.LENGTH_SHORT ).show( );
 
-//                Intent intent = new Intent( getApplicationContext(),Election_profile.class );
-//
-//                startActivity( intent);
+                obj = elelist.get( i );
+                //Toast.makeText( student_homepage.this, obj.getElection_name(), Toast.LENGTH_SHORT ).show( );
+                Intent intent = new Intent( getApplicationContext(),Election_profile.class );
+                intent.putExtra( "poss" , i);
+                intent.putExtra( "mydept" ,mydept);
+//                intent.putExtra( "mylist", (Serializable) elelist );
+
+                startActivity( intent);
 
             }
         } );
@@ -148,14 +148,14 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
 
 
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId())
         {
             case R.id.uploadImage_id:
                 Toast.makeText(this, "Upload your profile ", Toast.LENGTH_SHORT).show();
-                Intent i=new Intent( getApplicationContext(),Upload_profile.class );
-                startActivity( i );
+
 
                 break;
             case R.id.changepass_id:

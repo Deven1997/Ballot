@@ -58,6 +58,23 @@
         android:lines="2"
         />
 
+    <TextView
+        android:id="@+id/tv_max_candidate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Maximum candidate to be apply : 2"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"/>
+    <SeekBar
+        android:id="@+id/seekbar_addpost_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="16dp"
+
+        />
 
     <Button
         android:id="@+id/add_button_id"

@@ -32,5 +32,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-auth:16.0.4'
     implementation 'com.google.firebase:firebase-database:16.0.4'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation'pl.droidsonroids.gif:android-gif-drawable:1.1.17'
+    implementation 'com.felipecsl:gifimageview:2.1.0'
+    implementation 'commons-io:commons-io:2.4'
 }
 apply plugin: 'com.google.gms.google-services'

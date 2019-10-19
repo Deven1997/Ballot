@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,26 +28,80 @@ public class AddPost extends AppCompatActivity {
     Button addButton;
     EditText post_name,post_discription;
     TextView postlist_textView,election_name;
+    TextView TV_maxCandidate;
+    SeekBar seekBar;
 
+    int maxCand = 2;
 
     String dept_name1;
     String name,class_name,from_uid,to_uid;
+    String E_date;
+    String E_time;
 
 
     HashMap<String,String> map = new HashMap<>();
 
     LinearLayout linearLayout,linearLayout2;
-    int i = 0;
+    int inc = 0;
 
 
     DatabaseReference election_reff;
     DatabaseReference get_deptname_reff;
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate( R.menu.action_bar_menu,menu );
+        return super.onCreateOptionsMenu( menu );
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.checkbtn)
+        {
+            submitdata();
+        }
+        return super.onOptionsItemSelected( item );
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_post);
 
+
+        // The bellow code is for seekbar
+        TV_maxCandidate = findViewById( R.id.tv_max_candidate );
+        seekBar  = findViewById( R.id.seekbar_addpost_id );
+
+
+        seekBar.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener( ) {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if(i>8)
+                {
+                    TV_maxCandidate.setText( "Maximum candidate to be apply : Valid range 2-10" );
+                }
+                else
+                {
+                    TV_maxCandidate.setText( "Maximum candidate to be apply : " +(i+2));
+                }
+                maxCand = i+2;
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        } );
 
 
         post_name = findViewById(R.id.edit_postname_id);
@@ -58,6 +115,9 @@ public class AddPost extends AppCompatActivity {
         from_uid = getIntent().getExtras().getString("from");
         to_uid = getIntent().getExtras().getString("to");
         dept_name1 = getIntent().getExtras().getString("dept_name");
+        E_date = getIntent().getExtras().getString( "e_date" );
+        E_time = getIntent().getExtras().getString( "e_time" );
+
 
         election_name.setText(name);
 
@@ -93,6 +153,10 @@ public class AddPost extends AppCompatActivity {
                 {
                     Toast.makeText(AddPost.this, "Please add Discription ", Toast.LENGTH_SHORT).show();
                 }
+                else if(maxCand>10)
+                {
+                    Toast.makeText( AddPost.this, "Range Inappropriate", Toast.LENGTH_SHORT ).show( );
+                }
                 else
                 {
                     boolean flag = true;
@@ -110,30 +174,19 @@ public class AddPost extends AppCompatActivity {
 
                         map.put(pname,pdisc);
 
-                        i++;
+                        inc++;
 
-                        rowTextView.setText(i+" ) "+pname);
+                        rowTextView.setText(inc+" ) "+pname);
                         rowTextView.setTextColor(getResources().getColor(R.color.BlackColor));
                         rowTextView.setTextSize(20);
 
                         linearLayout.addView(rowTextView);
 
 
-                        if(i==1)
-                        {
-                            submit_button.setText("Submit");
-                            submit_button.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-                            layoutParams.gravity = Gravity.BOTTOM;
-                            layoutParams.gravity = Gravity.RIGHT;
-                            layoutParams.rightMargin = 8;
-                            layoutParams.bottomMargin = 5;
-                            linearLayout2.addView(submit_button,layoutParams);
-                        }
-
                         Toast.makeText(AddPost.this, "Post added Successfully...", Toast.LENGTH_SHORT).show();
                         post_name.setText(null);
                         post_discription.setText(null);
-                        submit_button.requestFocus();
+//                        submit_button.requestFocus();
 
                     }
 
@@ -142,27 +195,34 @@ public class AddPost extends AppCompatActivity {
         });
 
 
-        submit_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                election elect = new election(class_name,name,from_uid,to_uid,map);
+    }
+
+    void submitdata()
+    {
+        if(inc==0)
+        {
+            Toast.makeText( this, "Add at least one post", Toast.LENGTH_SHORT ).show( );
+        }
+        else
+        {
+            election elect = new election(class_name,name,from_uid,to_uid,E_date,E_time,maxCand,map);
 
 
-                    election_reff = FirebaseDatabase.getInstance().getReference().child("department").child("election").child(dept_name1);
+            election_reff = FirebaseDatabase.getInstance().getReference().child("department").child("election").child(dept_name1);
 
-                    String id = election_reff.push().getKey();
+            String id = election_reff.push().getKey();
 
-                    election_reff.child(id).setValue(elect);
+            election_reff.child(id).setValue(elect);
 
-                    Toast.makeText(AddPost.this, "Election added Successfully..", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddPost.this, "Election added Successfully..", Toast.LENGTH_SHORT).show();
 
-                    Intent i = new Intent(getApplicationContext(),Admin_homepage.class);
-                    i.putExtra("dept_n",dept_name1);
-                    i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(i);
-            }
-        });
+            Intent i = new Intent(getApplicationContext(),Admin_homepage.class);
+            i.putExtra("dept_n",dept_name1);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(i);
+        }
+
     }
 
 }

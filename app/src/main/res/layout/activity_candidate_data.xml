@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".candidate_data">
+    android:orientation="vertical"
+    tools:context=".candidate_data"
+    android:background="@color/MyBgColor">
 
-    <Button
-        android:id="@+id/BTNChooseImageu"
-        android:layout_width="132dp"
-        android:layout_height="56dp"
-        android:layout_below="@+id/image_viewu"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="#AEADBB07"
-        android:text="Choose Image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.963"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.102" />
+    <TextView
+        android:id="@+id/tv_posttitle_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Post name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark"
+        />
+
+
+
+
 
     <ImageView
         android:id="@+id/image_viewu"
@@ -38,17 +34,27 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.065" />
+         />
+    <Button
+        android:id="@+id/BTNChooseImageu"
+        android:layout_width="132dp"
+        android:layout_height="56dp"
+        android:layout_below="@+id/image_viewu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/MyBtnColor"
+        android:text="Choose Image"
+        />
 
     <EditText
         android:id="@+id/TVAddDescription"
-        android:layout_width="338dp"
-        android:layout_height="206dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -57,12 +63,7 @@
         android:layout_marginBottom="8dp"
         android:hint="Add your Description"
         android:lines="3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_viewu"
-        app:layout_constraintVertical_bias="0.082" />
+         />
 
     <Button
         android:id="@+id/BTNApply"
@@ -74,17 +75,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#AEADBB07"
+        android:background="@color/MyBtnColor"
         android:text="Apply"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.962"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVAddDescription"
-        app:layout_constraintVertical_bias="0.196" />
+        />
 
 
 
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

@@ -6,21 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Election_profile"
-    android:background="@color/MyBgColor">
+    android:background="@color/MyTitleBG"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/MyBgColor"
+        android:orientation="vertical">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:layout_marginTop="75dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginBottom="75dp"
         android:background="@drawable/border"
         android:orientation="vertical"
         >
 
         <TextView
+            android:id="@+id/ele_title_id"
             style="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +42,25 @@
             android:layout_marginLeft="9dp"
             android:layout_marginTop="9dp"
             android:layout_marginRight="9dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/MyTitle"/>
+
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/post_listview_id"
+                android:layout_marginTop="2dp">
+
+            </ListView>
+
+
+
+
+    </LinearLayout>
 
     </LinearLayout>
 

@@ -11,9 +11,11 @@ public class StartPage extends AppCompatActivity {
 
     Button studentbtn, teacherbtn;
     TextView superadmin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_start_page);
 
         studentbtn = findViewById(R.id.student_btn);

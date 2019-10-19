@@ -221,6 +221,12 @@
 
             </android.support.constraint.ConstraintLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Select Election Schedule : "
+                android:padding="16dp"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="280dp">
@@ -233,9 +239,11 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginBottom="232dp"
                     android:background="#AE3F663A"
                     android:text="Select Date " />
 
@@ -246,42 +254,17 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
+                    android:layout_marginStart="78dp"
+                    android:layout_marginLeft="78dp"
                     android:layout_marginTop="11dp"
                     android:layout_marginEnd="29dp"
                     android:layout_marginRight="29dp"
+                    android:layout_toEndOf="@+id/set_date_tbn_id"
+                    android:layout_toRightOf="@+id/set_date_tbn_id"
                     android:background="#AE3F663A"
                     android:text="Select Time " />
 
 
-                <TextView
-                    android:id="@+id/TVSelectedDate"
-                    android:layout_width="170dp"
-                    android:layout_height="37dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="200dp"
-                    android:layout_marginRight="200dp"
-                    android:layout_marginBottom="174dp"
-                    android:text="Selected Date" />
-
-                <TextView
-                    android:id="@+id/TVSelectedTime"
-                    android:layout_width="170dp"
-                    android:layout_height="37dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginRight="3dp"
-                    android:layout_marginBottom="174dp"
-                    android:text="Selected Time" />
 
 
                 <Button
