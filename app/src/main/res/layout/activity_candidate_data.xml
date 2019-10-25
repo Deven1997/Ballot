@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".candidate_data"
-    android:background="@color/MyBgColor">
+    android:background="@drawable/simple_border4">
 
     <TextView
         android:id="@+id/tv_posttitle_id"
@@ -53,7 +53,7 @@
 
     <EditText
         android:id="@+id/TVAddDescription"
-        android:layout_width="match_parent"
+        android:layout_width="381dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -61,9 +61,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/MyBgColor"
         android:hint="Add your Description"
-        android:lines="3"
-         />
+        android:lines="3" />
 
     <Button
         android:id="@+id/BTNApply"
@@ -80,7 +80,10 @@
         android:textStyle="bold"
         />
 
-
-
+    <ImageView
+        android:layout_width="401dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/asach" />
 
 </LinearLayout>

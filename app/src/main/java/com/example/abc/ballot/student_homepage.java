@@ -1,17 +1,23 @@
 package com.example.abc.ballot;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -37,6 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class student_homepage extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public  static final int RequestPermissionCode  = 1 ;
     private DrawerLayout mDrawerLayout;
     ActionBarDrawerToggle mToggle;
     ImageView profilePhoto;
@@ -45,6 +52,8 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
     String uid,mydept;
     List<election> elelist;
     election obj;
+    Uri uri;
+    Intent GalIntent, CropIntent;
 
     DatabaseReference student_db_reff, getStudent_db_reff2;
 
@@ -83,6 +92,8 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         navUCID.setText(uid);
 
         navigationView.setNavigationItemSelectedListener(this);
+
+
 
 
 
@@ -134,8 +145,6 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         } );
     }
 
-
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout_id);
@@ -155,7 +164,13 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         {
             case R.id.uploadImage_id:
                 Toast.makeText(this, "Upload your profile ", Toast.LENGTH_SHORT).show();
-
+                profilePhoto.setOnClickListener( new View.OnClickListener( ) {
+                    @Override
+                    public void onClick(View view) {
+                        profilePhoto=view.findViewById( R.id.profilePhoto);
+                        GetImageFromGallery();
+                    }
+                } );
 
                 break;
             case R.id.changepass_id:
@@ -176,6 +191,86 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
 
+
         return true;
+    }
+    public void GetImageFromGallery(){
+
+        GalIntent = new Intent(Intent.ACTION_PICK,
+                               android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(Intent.createChooser(GalIntent, "Select Image From Gallery"), 2);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+
+            ImageCropFunction();
+
+        }
+        else if (requestCode == 2) {
+
+            if (data != null) {
+
+                uri = data.getData();
+
+                ImageCropFunction();
+
+            }
+        }
+        else if (requestCode == 1) {
+
+            if (data != null) {
+
+                Bundle bundle = data.getExtras();
+
+                Bitmap bitmap = bundle.getParcelable( "data");
+
+                profilePhoto.setImageBitmap(bitmap);
+
+            }
+        }
+    }
+
+    public void ImageCropFunction() {
+
+        // Image Crop Code
+        try {
+            CropIntent = new Intent("com.android.camera.action.CROP");
+
+            CropIntent.setDataAndType(uri, "image/*");
+
+            CropIntent.putExtra("crop", "true");
+            CropIntent.putExtra("outputX", 180);
+            CropIntent.putExtra("outputY", 180);
+            CropIntent.putExtra("aspectX", 3);
+            CropIntent.putExtra("aspectY", 4);
+            CropIntent.putExtra("scaleUpIfNeeded", true);
+            CropIntent.putExtra("return-data", true);
+
+            startActivityForResult(CropIntent, 1);
+
+        } catch (ActivityNotFoundException e) {
+
+        }
+    }
+    //Image Crop Code End Here
+
+    public void EnableRuntimePermission(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale( student_homepage.this,
+                                                                 Manifest.permission.CAMERA))
+        {
+
+            Toast.makeText(student_homepage.this,"CAMERA permission allows us to Access CAMERA app", Toast.LENGTH_LONG).show();
+
+        } else {
+
+            ActivityCompat.requestPermissions(student_homepage.this,new String[]{
+                    Manifest.permission.CAMERA}, RequestPermissionCode);
+
+        }
     }
 }

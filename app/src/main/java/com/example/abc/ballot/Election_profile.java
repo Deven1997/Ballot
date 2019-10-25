@@ -31,7 +31,7 @@ public class Election_profile extends AppCompatActivity {
     HashMap<String,String> post1 = new HashMap<>();
 
     election obj;
-    String dept;
+    String dept,electionID;
     int possion;
 
     TextView eleTitle;
@@ -55,14 +55,17 @@ public class Election_profile extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+
                 Intent intent = new Intent( getApplicationContext(), candidate_data.class);
+                intent.putExtra( "dept",dept );
+                intent.putExtra( "electionID",electionID );
+                intent.putExtra( "position",possion );
                 startActivity(intent);
 
             }
         } );
 
         postreff =  FirebaseDatabase.getInstance().getReference().child( "department").child( "election").child( dept);
-
         postreff.addValueEventListener( new ValueEventListener( ) {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -89,8 +92,8 @@ public class Election_profile extends AppCompatActivity {
         try {
             election obj = eleList.get( possion );
 
-            post1 = obj.getPost( );
-
+            post1 = obj.getPost();
+            electionID = obj.getElection_id();
 
             eleTitle.setText( obj.getElection_name() );
 

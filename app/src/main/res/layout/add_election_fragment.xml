@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@drawable/simple_border4"
     android:layout_height="match_parent"
     android:gravity="center">
 
@@ -225,17 +226,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="Select Election Schedule : "
+                android:textColor="@color/BlackColor"
                 android:padding="16dp"/>
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="280dp">
+                android:layout_width="wrap_content"
+                android:layout_height="363dp">
 
 
                 <Button
                     android:id="@+id/set_date_tbn_id"
-                    android:layout_width="141dp"
-                    android:layout_height="36dp"
+                    android:layout_width="162dp"
+                    android:layout_height="64dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -243,19 +245,19 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginBottom="232dp"
+                    android:layout_marginBottom="287dp"
                     android:background="#AE3F663A"
                     android:text="Select Date " />
 
                 <Button
                     android:id="@+id/set_time_tbn_id"
-                    android:layout_width="117dp"
-                    android:layout_height="36dp"
+                    android:layout_width="139dp"
+                    android:layout_height="62dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginStart="78dp"
-                    android:layout_marginLeft="78dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginLeft="35dp"
                     android:layout_marginTop="11dp"
                     android:layout_marginEnd="29dp"
                     android:layout_marginRight="29dp"
@@ -263,8 +265,6 @@
                     android:layout_toRightOf="@+id/set_date_tbn_id"
                     android:background="#AE3F663A"
                     android:text="Select Time " />
-
-
 
 
                 <Button
@@ -275,9 +275,9 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="end"
-                    android:layout_marginEnd="6dp"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginBottom="117dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="204dp"
                     android:background="#AE3F663A"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"

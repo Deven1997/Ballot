@@ -53,8 +53,7 @@ import android.widget.Toast;
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Closing Activity")
                     .setMessage("Are you sure you want to close this activity?")
-                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()                    {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent i = new Intent(getApplicationContext(),StartPage.class);

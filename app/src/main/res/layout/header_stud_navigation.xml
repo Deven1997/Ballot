@@ -9,18 +9,21 @@
 
     <ImageView
         android:id="@+id/profilePhoto"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="87dp"
+        android:layout_height="86dp"
+        android:layout_marginLeft="1dp"
+        android:background="@drawable/simple_border4"
         android:src="@drawable/student_icon" />
 
     <TextView
         android:id="@+id/myname_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft=""
         android:text="Your Name"
         android:textColor="@color/BlackColor"
-        android:textStyle="bold"
-        android:layout_marginTop="8dp"/>
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/myuid_id"
         android:layout_width="wrap_content"

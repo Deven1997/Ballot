@@ -3,7 +3,7 @@ package com.example.abc.ballot;
 import java.util.HashMap;
 
 public class election {
-    String class_name,election_name,range_from,range_to,edate,etime;
+    String class_name,election_name,range_from,range_to,edate,etime,election_id;
     int maxCand;
     HashMap<String,String> post = new HashMap<>();
 
@@ -12,13 +12,14 @@ public class election {
 
     }
 
-    public election(String class_name, String election_name, String range_from, String range_to, String edate, String etime, int maxCand, HashMap<String, String> post) {
+    public election(String class_name, String election_name, String range_from, String range_to, String edate, String etime, String election_id, int maxCand, HashMap<String, String> post) {
         this.class_name = class_name;
         this.election_name = election_name;
         this.range_from = range_from;
         this.range_to = range_to;
         this.edate = edate;
         this.etime = etime;
+        this.election_id = election_id;
         this.maxCand = maxCand;
         this.post = post;
     }
@@ -45,6 +46,10 @@ public class election {
 
     public String getEtime() {
         return etime;
+    }
+
+    public String getElection_id() {
+        return election_id;
     }
 
     public int getMaxCand() {

@@ -13,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="50dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginBottom="50dp"
         android:background="@color/MyBgColor"
         android:orientation="vertical">
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:background="@drawable/border"
+        android:background="@drawable/border2"
         android:orientation="vertical"
         >
 
@@ -33,15 +33,15 @@
             style="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginRight="9dp"
             android:background="@color/MyBgColor"
             android:text="Election Title"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/MyTitle"
-            android:typeface="monospace"
-            android:layout_marginLeft="9dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginRight="9dp"/>
+            android:textColor="@color/BlackColor"
+            android:typeface="serif" />
 
         <View
             android:layout_width="match_parent"

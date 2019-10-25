@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,27 +14,44 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class candidate_data extends AppCompatActivity {
 
     ImageView imageView;
-    Button buttonCamera, buttonGallery,btnapply;
-    File file;
+    Button buttonGallery,btnapply;
     Uri uri;
-    Intent CamIntent, GalIntent, CropIntent ;
+    Intent GalIntent, CropIntent ;
     public  static final int RequestPermissionCode  = 1 ;
-    DisplayMetrics displayMetrics ;
-    int width, height;
+    DatabaseReference apply_reff;
+    List<election> eleList = new ArrayList<>(  );
+
+    String dept,electionID;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate_data);
 
-        imageView = (ImageView)findViewById(R.id.image_viewu );
-        //buttonCamera = (Button)findViewById(R.id.button2);
+        dept = getIntent().getExtras().getString( "dept" );
+        electionID = getIntent().getExtras().getString( "electionID" );
+
+        //position are passed
+
+        imageView = findViewById(R.id.image_viewu );
+
         buttonGallery = (Button)findViewById(R.id.BTNChooseImageu );
+
+
 
         EnableRuntimePermission();
 
@@ -46,11 +64,31 @@ public class candidate_data extends AppCompatActivity {
 //            }
 //        });
 
+        apply_reff = FirebaseDatabase.getInstance().getReference().child( "department").child( "election").child( dept);
+        apply_reff.addValueEventListener( new ValueEventListener( ) {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                eleList.clear();
+                for(DataSnapshot electsnap: dataSnapshot.getChildren()){
+                    election e = electsnap.getValue(election.class);
+                    eleList.add(e);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        } );
+
+
         btnapply=findViewById(R.id.BTNApply);
         btnapply.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Toast.makeText( candidate_data.this, "Your data saved Sucessfully...", Toast.LENGTH_SHORT ).show( );
+
+
             }
         } );
 

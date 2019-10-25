@@ -206,14 +206,14 @@ public class AddPost extends AppCompatActivity {
         }
         else
         {
-            election elect = new election(class_name,name,from_uid,to_uid,E_date,E_time,maxCand,map);
-
 
             election_reff = FirebaseDatabase.getInstance().getReference().child("department").child("election").child(dept_name1);
 
-            String id = election_reff.push().getKey();
+            String eid = election_reff.push().getKey();
 
-            election_reff.child(id).setValue(elect);
+            election elect = new election(class_name,name,from_uid,to_uid,E_date,E_time,eid,maxCand,map);
+
+            election_reff.child(eid).setValue(elect);
 
             Toast.makeText(AddPost.this, "Election added Successfully..", Toast.LENGTH_SHORT).show();
 
