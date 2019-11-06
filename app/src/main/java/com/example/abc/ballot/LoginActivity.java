@@ -64,8 +64,9 @@ public class LoginActivity extends AppCompatActivity {
                         displayInternetConnectivityToast();
                     }
                     else {
-                        progress.show();
+
                     if (validateFields()) {
+                        progress.show();
                         reff = FirebaseDatabase.getInstance().getReference().child("students");
                         myid = input_id.getText().toString().trim();
                         mypassword = input_pass.getText().toString().trim();

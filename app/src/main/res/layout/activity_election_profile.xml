@@ -11,56 +11,59 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_height="731dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginTop="1dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="1dp"
         android:background="@color/MyBgColor"
         android:orientation="vertical">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="698dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/border5"
+            android:orientation="vertical"
+            android:backgroundTint="@color/MyBgColor">
 
-        android:background="@drawable/border2"
-        android:orientation="vertical"
-        >
+            <TextView
+                android:id="@+id/ele_title_id"
+                style="bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginRight="9dp"
+                android:background="@color/MyTitleBG"
+                android:text="Election Title"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/BlackColor"
+                android:typeface="serif" />
 
-        <TextView
-            android:id="@+id/ele_title_id"
-            style="bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="9dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginRight="9dp"
-            android:background="@color/MyBgColor"
-            android:text="Election Title"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/BlackColor"
-            android:typeface="serif" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/MyTitle"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/tablayoutindicatorcolor" />
 
 
             <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:id="@+id/post_listview_id"
-                android:layout_marginTop="2dp">
+                android:layout_width="match_parent"
+                android:layout_height="664dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/border5">
 
             </ListView>
 
 
-
-
-    </LinearLayout>
+        </LinearLayout>
 
     </LinearLayout>
 

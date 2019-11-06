@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "62048105018-89qgu30f6n5efn7448gp1jnklup6o1nc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.abc.ballot",
+            "certificate_hash": "06e35893a5353f06face74c8414e3ed23a95aa9d"
+          }
+        },
+        {
           "client_id": "62048105018-o70g49m11qeoq50mn6qjo58t7fn3b8p2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

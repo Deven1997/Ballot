@@ -6,6 +6,7 @@
     android:id="@+id/addpost_linear_layout_id_2"
     android:layout_width="match_parent"
     android:background="@drawable/simple_border4"
+    android:backgroundTint="@color/MyBgColor"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".AddPost">
@@ -24,22 +25,22 @@
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:background="@color/MyBgColor"
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/view5"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="5dp">
+        android:background="@color/MyBgColor">
 
         <EditText
             android:id="@+id/edit_postname_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint=" Enter Post Name"
             android:background="@color/MyBgColor"
+            android:hint=" Enter Post Name"
             android:inputType="textCapSentences" />
 
 
@@ -49,8 +50,8 @@
         android:id="@+id/edit_description_id"
         android:layout_width="357dp"
         android:layout_height="68dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
@@ -64,9 +65,9 @@
 
     <TextView
         android:id="@+id/tv_max_candidate"
-        android:layout_width="373dp"
+        android:layout_width="347dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:background="@color/MyBgColor"
@@ -94,7 +95,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="8dp"
         android:background="@color/colorPrimaryDark"
@@ -106,13 +107,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="270dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginBottom="8dp"
-
         android:background="@drawable/border">
 
         <LinearLayout

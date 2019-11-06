@@ -1,5 +1,6 @@
 package com.example.abc.ballot;
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,11 +15,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -33,8 +40,9 @@ public class candidate_data extends AppCompatActivity {
     public  static final int RequestPermissionCode  = 1 ;
     DatabaseReference apply_reff;
     List<election> eleList = new ArrayList<>(  );
-
+    ProgressDialog progressDailog;
     String dept,electionID;
+    private StorageReference storageReference;
 
 
     @Override
@@ -51,6 +59,11 @@ public class candidate_data extends AppCompatActivity {
 
         buttonGallery = (Button)findViewById(R.id.BTNChooseImageu );
 
+        progressDailog = new ProgressDialog(this);
+       // progressDailog.setTitle("Uploading..!!");
+        //progressDailog.setMessage("Please Wait!!");
+       // progressDailog.setCancelable(true);
+       // progressDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
 
         EnableRuntimePermission();
@@ -83,14 +96,51 @@ public class candidate_data extends AppCompatActivity {
 
 
         btnapply=findViewById(R.id.BTNApply);
+        storageReference= FirebaseStorage.getInstance().getReference();
         btnapply.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+
                 Toast.makeText( candidate_data.this, "Your data saved Sucessfully...", Toast.LENGTH_SHORT ).show( );
 
+                if(uri !=null){
+                    StorageReference riversRef = storageReference.child("images/Candidate_profile.jpg");
+                    progressDailog.show();
+
+                    riversRef.putFile(uri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    progressDailog.dismiss();
+                                    Toast.makeText( candidate_data.this, "data uploaded", Toast.LENGTH_SHORT ).show( );
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    // Handle unsuccessful uploads
+                                    // ...
+                                    progressDailog.dismiss();
+                                    Toast.makeText( candidate_data.this, exception.getMessage(), Toast.LENGTH_SHORT ).show( );
+                                }
+                            }).addOnProgressListener( new OnProgressListener<UploadTask.TaskSnapshot>( ) {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress=(100.0 * taskSnapshot.getBytesTransferred())/taskSnapshot.getTotalByteCount();
+                            progressDailog.setMessage( ((int) progress) +"% Uploading..." );
+
+                        }
+                    } );
+                }
+                else{
+                    Toast.makeText( candidate_data.this, "Image not selected....", Toast.LENGTH_SHORT ).show( );
+                }
 
             }
         } );
+
+
+
 
         buttonGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +182,7 @@ public class candidate_data extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0 && resultCode == RESULT_OK) {
 
-            ImageCropFunction();
+           ImageCropFunction();
 
         }
         else if (requestCode == 2) {
@@ -141,7 +191,7 @@ public class candidate_data extends AppCompatActivity {
 
                 uri = data.getData();
 
-                ImageCropFunction();
+               ImageCropFunction();
 
             }
         }
@@ -180,6 +230,7 @@ public class candidate_data extends AppCompatActivity {
         } catch (ActivityNotFoundException e) {
 
         }
+
     }
     //Image Crop Code End Here
 
