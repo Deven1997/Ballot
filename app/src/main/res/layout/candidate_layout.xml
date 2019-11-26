@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/IV_candidate_prof"
+        android:background="@color/BlackColor"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:id="@+id/TV_candidateNAME_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/IV_candidate_prof"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/tablayoutindicatorcolor"
+        android:text="Candidate Name"
+        style="bold"
+        >
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/TV_uid_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TV_candidateNAME_id"
+        android:gravity="center"
+        android:text="( UID )"
+        android:textColor="@color/tablayoutindicatorcolor"
+        >
+
+
+    </TextView>
+    <TextView
+        android:id="@+id/TV_disc_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/TV_uid_id"
+        android:gravity="center"
+        android:textColor="@color/WhiteColor"
+        android:layout_margin="10dp"
+        android:text="Description added by candidate will be displayed here">
+
+
+    </TextView>
+
+</RelativeLayout>

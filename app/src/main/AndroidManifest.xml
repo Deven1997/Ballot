@@ -17,18 +17,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".splash">
+        <activity android:name=".Candidate_List"></activity>
+        <activity android:name=".splash"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".Election_process" />
-        <activity android:name=".Election_profile"
-            android:theme="@style/Theme.Design.NoActionBar"/>
-        <activity android:name=".Upload_profile"
-            />
+        <activity
+            android:name=".Election_profile"
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity android:name=".Upload_profile" />
         <activity android:name=".change_password" />
         <activity
             android:name=".StartPage"

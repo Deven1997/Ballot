@@ -2,31 +2,24 @@ package com.example.abc.ballot;
 
 import android.Manifest;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
+
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,7 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,17 +64,14 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         uid = getIntent().getExtras().getString("uid");
         mydept = getIntent().getExtras().getString("dept");
 
-        /* setting name and ucid to header of navigation bar */
-
 
         mDrawerLayout = findViewById(R.id.drawer_layout_id);
-
         mToggle = new ActionBarDrawerToggle(this,mDrawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mToggle);
         mToggle.syncState();
 
+        /* setting name and ucid to header of navigation bar */
         navigationView = findViewById(R.id.nav1_id);
-
 
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = headerView.findViewById(R.id.myname_id);
@@ -92,10 +82,6 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         navUCID.setText(uid);
 
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
-
 
         ElectionlistView=findViewById(R.id.ListView1);
         elelist=new ArrayList<>();
@@ -112,7 +98,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
                 Intent intent = new Intent( getApplicationContext(),Election_profile.class );
                 intent.putExtra( "poss" , i);
                 intent.putExtra( "mydept" ,mydept);
-//                intent.putExtra( "mylist", (Serializable) elelist );
+                intent.putExtra("uid",uid);
 
                 startActivity( intent);
 

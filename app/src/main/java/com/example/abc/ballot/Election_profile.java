@@ -33,6 +33,7 @@ public class Election_profile extends AppCompatActivity {
     election obj;
     String dept,electionID;
     int possion;
+    String uid;
 
     TextView eleTitle;
 
@@ -46,6 +47,7 @@ public class Election_profile extends AppCompatActivity {
 
         possion = getIntent().getExtras().getInt( "poss" );
         dept = getIntent().getExtras().getString( "mydept" );
+        uid = getIntent().getExtras().getString("uid");
 
         eleTitle = findViewById( R.id.ele_title_id );
 
@@ -56,10 +58,14 @@ public class Election_profile extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
 
-                Intent intent = new Intent( getApplicationContext(), candidate_data.class);
+
+                Intent intent = new Intent( getApplicationContext(), Candidate_List.class);
                 intent.putExtra( "dept",dept );
                 intent.putExtra( "electionID",electionID );
-                intent.putExtra( "position",possion );
+                intent.putExtra( "position",i);
+                intent.putExtra("election_position",possion);
+                intent.putExtra("uid",uid);
+                intent.putExtra("postname",postList.get(i).getPname());
                 startActivity(intent);
 
             }

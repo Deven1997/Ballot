@@ -2,6 +2,7 @@ package com.example.abc.ballot;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -11,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -29,7 +32,9 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class candidate_data extends AppCompatActivity {
 
@@ -38,11 +43,21 @@ public class candidate_data extends AppCompatActivity {
     Uri uri;
     Intent GalIntent, CropIntent ;
     public  static final int RequestPermissionCode  = 1 ;
-    DatabaseReference apply_reff;
+    DatabaseReference apply_reff,apply_reff2;
     List<election> eleList = new ArrayList<>(  );
     ProgressDialog progressDailog;
+    ProgressDialog progress2;
     String dept,electionID;
-    private StorageReference storageReference;
+    String stud_name;
+    int election_position;
+    int post_position;
+    String uid;
+    List<post> postList = new ArrayList<>();
+    HashMap<String,String> post1 = new HashMap<>();
+    public StorageReference storageReference;
+    DatabaseReference stud_reff;
+
+    TextView AddDiscription,TVpostname;
 
 
     @Override
@@ -52,30 +67,43 @@ public class candidate_data extends AppCompatActivity {
 
         dept = getIntent().getExtras().getString( "dept" );
         electionID = getIntent().getExtras().getString( "electionID" );
+        post_position = getIntent().getExtras().getInt("position");
+        election_position = getIntent().getExtras().getInt("election_position");
+        uid = getIntent().getExtras().getString("uid");
 
-        //position are passed
+        AddDiscription = findViewById(R.id.TVAddDescription);
 
         imageView = findViewById(R.id.image_viewu );
 
-        buttonGallery = (Button)findViewById(R.id.BTNChooseImageu );
+        buttonGallery = findViewById(R.id.BTNChooseImageu );
+
+        TVpostname = findViewById(R.id.tv_posttitle_id);
+
 
         progressDailog = new ProgressDialog(this);
-       // progressDailog.setTitle("Uploading..!!");
-        //progressDailog.setMessage("Please Wait!!");
-       // progressDailog.setCancelable(true);
-       // progressDailog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+        progress2 = new ProgressDialog(this);
+        progress2.setTitle("Data Uploading..!!");
+        progress2.setMessage("Please Wait!!");
+        progress2.setCancelable(true);
+        progress2.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
 
         EnableRuntimePermission();
 
-//        buttonCamera.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                ClickImageFromCamera() ;
-//
-//            }
-//        });
+
+        stud_reff = FirebaseDatabase.getInstance().getReference().child("students").child(uid).child("name");
+        stud_reff.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                stud_name = dataSnapshot.getValue(String.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         apply_reff = FirebaseDatabase.getInstance().getReference().child( "department").child( "election").child( dept);
         apply_reff.addValueEventListener( new ValueEventListener( ) {
@@ -84,9 +112,27 @@ public class candidate_data extends AppCompatActivity {
                 eleList.clear();
                 for(DataSnapshot electsnap: dataSnapshot.getChildren()){
                     election e = electsnap.getValue(election.class);
-                    eleList.add(e);
+                    if(e.getElection_id().equals(electionID))
+                    {
+                      post1 = e.getPost();
+                      break;
+                    }
+                    //eleList.add(e);
+
+
+                    TVpostname.setText((postList.get(post_position)).getPname());
+                }
+
+               // Load_Post();
+
+                for (Map.Entry<String, String> entry : post1.entrySet()) {
+                    String pname = entry.getKey();
+                    String pdisc = entry.getValue();
+                    post p = new post(pname, pdisc);
+                    postList.add(p);
                 }
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -95,52 +141,75 @@ public class candidate_data extends AppCompatActivity {
         } );
 
 
+
         btnapply=findViewById(R.id.BTNApply);
-        storageReference= FirebaseStorage.getInstance().getReference();
         btnapply.setOnClickListener( new View.OnClickListener(){
             @Override
             public void onClick(View view) {
 
-                Toast.makeText( candidate_data.this, "Your data saved Sucessfully...", Toast.LENGTH_SHORT ).show( );
+                storageReference= FirebaseStorage.getInstance().getReference();
 
-                if(uri !=null){
-                    StorageReference riversRef = storageReference.child("images/Candidate_profile.jpg");
-                    progressDailog.show();
+                post post_obj = postList.get(post_position);
+                final String pname = post_obj.getPname();
+                final String pdisc = post_obj.getPdisc();
 
-                    riversRef.putFile(uri)
-                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    progressDailog.dismiss();
-                                    Toast.makeText( candidate_data.this, "data uploaded", Toast.LENGTH_SHORT ).show( );
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    // Handle unsuccessful uploads
-                                    // ...
-                                    progressDailog.dismiss();
-                                    Toast.makeText( candidate_data.this, exception.getMessage(), Toast.LENGTH_SHORT ).show( );
-                                }
-                            }).addOnProgressListener( new OnProgressListener<UploadTask.TaskSnapshot>( ) {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress=(100.0 * taskSnapshot.getBytesTransferred())/taskSnapshot.getTotalByteCount();
-                            progressDailog.setMessage( ((int) progress) +"% Uploading..." );
+                apply_reff2 = FirebaseDatabase.getInstance().getReference().child("candidate").child(electionID).child(pname).child(uid);
 
-                        }
-                    } );
+
+
+                final String add_discription = AddDiscription.getText().toString().trim();
+
+                if(add_discription.trim().length()==0)
+                {
+                    Toast.makeText(candidate_data.this, "Your Description needed ", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    Toast.makeText( candidate_data.this, "Image not selected....", Toast.LENGTH_SHORT ).show( );
-                }
+                else {
 
+                    if (uri != null) {
+
+
+
+                        final StorageReference imageRef = storageReference.child("candidates/"+uid+"."+getFileExtension(uri));
+                        progressDailog.show();
+
+                        imageRef.putFile(uri)
+                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        progressDailog.dismiss();
+                                        Toast.makeText(candidate_data.this, "Image uploaded", Toast.LENGTH_SHORT).show();
+
+                                        progress2.show();
+                                        candidate candidate_obj = new candidate(electionID,pname,pdisc,add_discription,uid,imageRef.getDownloadUrl().toString(),stud_name);
+                                        apply_reff2.setValue(candidate_obj);
+                                        progress2.dismiss();
+                                        Toast.makeText( candidate_data.this, "Your data saved Sucessfully...", Toast.LENGTH_SHORT ).show( );
+
+                                    }
+                                })
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        // Handle unsuccessful uploads
+                                        // ...
+                                        progressDailog.dismiss();
+                                        Toast.makeText(candidate_data.this, exception.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                                progressDailog.setMessage(((int) progress) + "% Uploading...");
+
+                            }
+                        });
+                    } else {
+                        Toast.makeText(candidate_data.this, "Image not selected....", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
             }
         } );
-
-
-
 
         buttonGallery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +219,35 @@ public class candidate_data extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    // the below method is to get the extension of image
+    private String getFileExtension(Uri uri)
+    {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    private void Load_Post() {
+
+        try {
+            election obj = eleList.get(election_position);
+
+            post1 = obj.getPost();
+
+            for (Map.Entry<String, String> entry : post1.entrySet()) {
+                String pname = entry.getKey();
+                String pdisc = entry.getValue();
+                post p = new post(pname, pdisc);
+                postList.add(p);
+
+            }
+
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Toast.makeText(this, "please wait", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -201,9 +299,16 @@ public class candidate_data extends AppCompatActivity {
 
                 Bundle bundle = data.getExtras();
 
-                Bitmap bitmap = bundle.getParcelable( "data");
+                try
+                {
+                    Bitmap bitmap = bundle.getParcelable( "data");
+                    imageView.setImageBitmap(bitmap);
 
-                imageView.setImageBitmap(bitmap);
+                }catch (Exception e)
+                {
+                    Toast.makeText(this, "image not selected", Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         }
