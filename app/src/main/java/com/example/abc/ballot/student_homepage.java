@@ -2,6 +2,7 @@ package com.example.abc.ballot;
 
 import android.Manifest;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -173,6 +175,22 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.logoutmenu_id:
                 Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show();
+
+                new AlertDialog.Builder(this)
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setTitle("Logout")
+                        .setMessage("Are you sure ?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener()                    {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(getApplicationContext(),StartPage.class);
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);  // to finish all previous activities
+                                startActivity(i);
+                            }
+
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
 
                 break;
         }

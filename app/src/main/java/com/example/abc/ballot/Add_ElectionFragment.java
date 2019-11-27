@@ -109,9 +109,11 @@ Button btn_set_time;
                 time = new TimePickerDialog( getContext( ), new TimePickerDialog.OnTimeSetListener( ) {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hrs, int mi) {
+
                         if(hrs>=12)
                         {
                           AMPM = "PM";
+
                         }
                         else
                             AMPM = "AM";

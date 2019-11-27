@@ -11,17 +11,52 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/Viewpager_id"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="30dp">
+        android:layout_height="wrap_content"
+        >
 
     </android.support.v4.view.ViewPager>
+
+    <TextView
+        android:id="@+id/TV_status_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/voteButton_id"
+        android:text="YOUR VOTE IS COUNTED FOR THIS POST"
+        android:gravity="center"
+        android:padding="5dp"
+        style="bold"
+        android:textColor="@color/RedColor"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:visibility="invisible"
+        >
+
+    </TextView>
+
+    <Button
+        android:id="@+id/voteButton_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Votting not Started yet!"
+        android:layout_centerInParent="true"
+        android:textAlignment="center"
+        android:padding="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/dotsLayout"
+        android:textColor="@color/WhiteColor"
+        android:background="@color/RedColor"
+        android:visibility="invisible"
+        >
+
+    </Button>
 
     <LinearLayout
         android:id="@+id/dotsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Viewpager_id"
-        android:orientation="horizontal">
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal">
 
     </LinearLayout>
 
@@ -43,11 +78,14 @@
         android:layout_below="@id/pbHeaderProgress"
         android:text="No one has applied for this post yet!.."
         android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimaryDark"
         android:layout_marginTop="16dp"
         android:textSize="24sp"
         android:visibility="invisible"
         >
     </TextView>
+
+
 
 
 </RelativeLayout>
