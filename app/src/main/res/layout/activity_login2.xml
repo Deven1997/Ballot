@@ -63,12 +63,12 @@
                     android:hint="ID"
                     android:inputType="number"
                     android:lineSpacingExtra="8dp"
+                    android:maxLength="10"
                     android:maxLines="1"
                     android:paddingLeft="15dp"
                     android:singleLine="true"
-                    android:theme="@style/MyEditTextTheme"
 
-                    />
+                    android:theme="@style/MyEditTextTheme" />
 
             </android.support.design.widget.TextInputLayout>
 

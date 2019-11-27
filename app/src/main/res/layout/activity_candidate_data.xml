@@ -13,12 +13,13 @@
         android:id="@+id/tv_posttitle_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Post name"
         android:layout_marginTop="15dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="Post name"
         android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimaryDark"
-        />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 
     <ImageView

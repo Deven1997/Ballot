@@ -17,8 +17,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".result_election_list"></activity>
-        <activity android:name=".Candidate_List" />
+
+        <activity android:name=".result_election_list"
+            android:label="Result"
+            android:theme="@style/AppTheme"></activity>
+
+        <activity android:name=".Candidate_List"
+            android:label="Candidate List"
+            android:theme="@style/AppTheme"/>
+
         <activity
             android:name=".splash"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -28,28 +35,59 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Election_process" />
+
+        <activity android:name=".Election_process"
+            android:label="Election Process"
+            android:theme="@style/AppTheme"/>
+
         <activity
             android:name=".Election_profile"
-            android:theme="@style/Theme.Design.NoActionBar" />
-        <activity android:name=".Upload_profile" />
-        <activity android:name=".change_password" />
+            android:theme="@style/AppTheme"
+            android:label="  Posts  "/>
+
+        <activity android:name=".Upload_profile"
+            android:label="Upload Profile"
+            android:theme="@style/AppTheme"/>
+
+        <activity android:name=".change_password"
+            android:label="Change Password"
+            android:theme="@style/AppTheme" />
+
         <activity
             android:name=".StartPage"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".AdminLogin"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".registration" />
-        <activity android:name=".Admin_homepage" />
+            android:theme="@style/AppTheme"
+            android:label=" Admin Login "/>
+
+        <activity android:name=".registration"
+            android:label=" Registration "
+            android:theme="@style/AppTheme"/>
+
+        <activity android:name=".Admin_homepage"
+            android:theme="@style/AppTheme"
+            android:label=" Admin Homepage "/>
+
         <activity
             android:name=".student_homepage"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".candidate_data" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".AddPost" />
-        <activity android:name=".ResultPage" />
+            android:label=" Conducted Election List "/>
+
+        <activity android:name=".candidate_data"
+            android:label=" Apply For Posts" />
+
+        <activity android:name=".LoginActivity"
+            android:label=" Login "/>
+
+        <activity android:name=".AddPost"
+            android:label=" Add Posts "
+            android:theme="@style/AppTheme"/>
+
+        <activity android:name=".ResultPage"
+            android:label=" Result of Election "
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
