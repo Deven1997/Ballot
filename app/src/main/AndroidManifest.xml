@@ -17,11 +17,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Candidate_List"></activity>
-        <activity android:name=".splash"
+        <activity android:name=".result_election_list"></activity>
+        <activity android:name=".Candidate_List" />
+        <activity
+            android:name=".splash"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

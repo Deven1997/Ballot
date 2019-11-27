@@ -167,7 +167,8 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
                 break;
             case  R.id.resultmenu_id:
                 Toast.makeText(this, "Result", Toast.LENGTH_SHORT).show();
-                Intent i1=new Intent(getApplicationContext(),ResultPage.class);
+                Intent i1=new Intent(getApplicationContext(),result_election_list.class);
+                i1.putExtra("dept",mydept);
                 startActivity(i1);
                 break;
             case R.id.logoutmenu_id:
