@@ -27,8 +27,10 @@ import android.widget.Toast;
 
         String dept = getIntent().getExtras().getString("dept_n");
 
+
         Bundle b = new Bundle();
         b.putString("dept_n",dept);
+
 
         ElectionList e = new ElectionList();
         Add_ElectionFragment a = new Add_ElectionFragment();

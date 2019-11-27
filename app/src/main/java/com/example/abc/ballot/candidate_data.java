@@ -119,11 +119,9 @@ public class candidate_data extends AppCompatActivity {
                     }
                     //eleList.add(e);
 
-
-                    TVpostname.setText((postList.get(post_position)).getPname());
                 }
 
-               // Load_Post();
+                // Load_Post();
 
                 for (Map.Entry<String, String> entry : post1.entrySet()) {
                     String pname = entry.getKey();
@@ -131,6 +129,10 @@ public class candidate_data extends AppCompatActivity {
                     post p = new post(pname, pdisc);
                     postList.add(p);
                 }
+
+                post p = postList.get(post_position);
+                String po_name = p.getPname();
+                TVpostname.setText(po_name);
             }
 
 
@@ -184,6 +186,13 @@ public class candidate_data extends AppCompatActivity {
                                         apply_reff2.setValue(candidate_obj);
                                         progress2.dismiss();
                                         Toast.makeText( candidate_data.this, "Your data saved Sucessfully...", Toast.LENGTH_SHORT ).show( );
+
+                                        Intent intent = new Intent( getApplicationContext(),Election_profile.class );
+                                        intent.putExtra( "poss" , election_position);
+                                        intent.putExtra( "mydept" ,dept);
+                                        intent.putExtra("uid",uid);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity( intent);
 
                                     }
                                 })

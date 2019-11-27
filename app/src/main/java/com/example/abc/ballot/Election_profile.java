@@ -34,8 +34,10 @@ public class Election_profile extends AppCompatActivity {
     String dept,electionID;
     int possion;
     String uid;
+    String edate,etime;
 
-    TextView eleTitle;
+
+    TextView eleTitle,TVdatetime;
 
     DatabaseReference postreff;
 
@@ -53,9 +55,14 @@ public class Election_profile extends AppCompatActivity {
 
         postListView = findViewById( R.id.post_listview_id );
 
+        TVdatetime = findViewById(R.id.TV_datetime_id);
+
+
+
         postListView.setOnItemClickListener( new AdapterView.OnItemClickListener( ) {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
 
 
 
@@ -66,6 +73,8 @@ public class Election_profile extends AppCompatActivity {
                 intent.putExtra("election_position",possion);
                 intent.putExtra("uid",uid);
                 intent.putExtra("postname",postList.get(i).getPname());
+                intent.putExtra("edate",edate);
+                intent.putExtra("etime",etime);
                 startActivity(intent);
 
             }
@@ -97,6 +106,11 @@ public class Election_profile extends AppCompatActivity {
 
         try {
             election obj = eleList.get( possion );
+
+            edate = obj.getEdate();
+            etime = obj.getEtime();
+
+            TVdatetime.setText("Election Date: "+obj.getEdate()+"       Time: "+obj.getEtime());
 
             post1 = obj.getPost();
             electionID = obj.getElection_id();
