@@ -300,8 +300,6 @@ public class Candidate_List extends AppCompatActivity implements SelectCandidate
                     });
 
 
-
-
                 }
 
 
@@ -391,6 +389,10 @@ public class Candidate_List extends AppCompatActivity implements SelectCandidate
         if(cmonth>=emonth && cdate>=edate)
         {
             if(ehrs<=chrs && emins<= cmins)
+            {
+                status = true;
+            }
+            if(cmonth>emonth && cdate>edate)
             {
                 status = true;
             }

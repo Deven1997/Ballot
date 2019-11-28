@@ -1,14 +1,14 @@
 package com.example.abc.ballot;
 
-import android.app.ActionBar;
+
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.Gravity;
-import android.view.ViewGroup;
-import android.webkit.WebView;
+
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +24,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
 public class ResultPage extends AppCompatActivity {
 
     String dept,ucid,election_position,election_ID;
@@ -35,7 +37,10 @@ public class ResultPage extends AppCompatActivity {
     HashMap<String,String> postList = new HashMap<>();
     List<String> postNames = new ArrayList<>(  );
     List<candidate> cand_list = new ArrayList<>(  );
-    List<election> elelist;
+    List<result> resultslist = new ArrayList<>();
+    List<String> temp = new ArrayList<>();
+
+
 
     int abc;
     LinearLayout linearLayout;
@@ -49,11 +54,11 @@ public class ResultPage extends AppCompatActivity {
         setContentView(R.layout.activity_result_page);
 
         dept = getIntent().getExtras().getString( "dept" );
-       // ucid = getIntent().getExtras().getString( "uid" );
+        // ucid = getIntent().getExtras().getString( "uid" );
         election_position = getIntent().getExtras().getString( "poss" );
         election_ID = getIntent().getExtras().getString( "election_ID" );
 
-      //  Toast.makeText( this, dept+" "+ucid+" "+election_ID, Toast.LENGTH_SHORT ).show( );
+        //  Toast.makeText( this, dept+" "+ucid+" "+election_ID, Toast.LENGTH_SHORT ).show( );
 
         TV_EleTitle = findViewById( R.id.Election_title_id );
 
@@ -77,7 +82,11 @@ public class ResultPage extends AppCompatActivity {
                     postNames.add( p.getPname( ) );
                 }
 
+
                 getData();
+
+
+
 
             }
 
@@ -87,17 +96,14 @@ public class ResultPage extends AppCompatActivity {
             }
         } );
 
-
-
-
-
-
     }
+
 
 
 
     void getData()
     {
+
         for(final String pname:postNames)
         {
             candiReff = FirebaseDatabase.getInstance().getReference().child( "candidate" ).child( election_ID );
@@ -107,7 +113,7 @@ public class ResultPage extends AppCompatActivity {
 
                     if(dataSnapshot.hasChild(pname))
                     {
-                        Toast.makeText( ResultPage.this, pname+" Matched", Toast.LENGTH_SHORT ).show( );
+                       // Toast.makeText( ResultPage.this, pname+" Matched", Toast.LENGTH_SHORT ).show( );
                         DatabaseReference candiReff2 = FirebaseDatabase.getInstance().getReference().child( "candidate" ).child( election_ID ).child( pname );
                         candiReff2.addValueEventListener( new ValueEventListener( ) {
                             @Override
@@ -123,19 +129,38 @@ public class ResultPage extends AppCompatActivity {
 
                                 linearLayout.addView( postTextView );
 
-                                Toast.makeText( ResultPage.this, pname+" added", Toast.LENGTH_SHORT ).show( );
+
+                               // Toast.makeText( ResultPage.this, pname+" added", Toast.LENGTH_SHORT ).show( );
                                 for(DataSnapshot candi:dataSnapshot.getChildren())
                                 {
 
                                     candidate c = candi.getValue(candidate.class);
+                                    final String cadnameee = c.getStud_name();
 
-                                    abc = 0;
 
                                     DatabaseReference resultReff = FirebaseDatabase.getInstance().getReference().child( "result" ).child( election_ID ).child( c.getPname() ).child( c.getUid() );
                                     resultReff.addValueEventListener( new ValueEventListener( ) {
                                         @Override
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                         abc = (int) dataSnapshot.getChildrenCount();
+                                            //abc = (int) dataSnapshot.getChildrenCount();
+                                            resultslist.clear();
+                                            for(DataSnapshot db : dataSnapshot.getChildren())
+                                            {
+                                                result r = db.getValue(result.class);
+                                                resultslist.add(r);
+                                            }
+
+
+                                            final TextView nameTextView = new TextView(ResultPage.this);
+                                            nameTextView.setTextColor( getResources().getColor( R.color.BlackColor) );
+                                            nameTextView.setTextSize( 15 );
+                                            nameTextView.setGravity( Gravity.LEFT );
+
+                                            nameTextView.setText( cadnameee + "   " +resultslist.size() );
+
+                                            temp.add(cadnameee + "   " +resultslist.size());
+
+                                            linearLayout.addView( nameTextView );
                                         }
 
                                         @Override
@@ -145,18 +170,11 @@ public class ResultPage extends AppCompatActivity {
                                     } );
 
 
-                                   // int countresult = getCount(c.getPname(),c.getUid());
+                                    // int countresult = getCount(c.getPname(),c.getUid());
 
 
 
-                                    final TextView nameTextView = new TextView(ResultPage.this);
-                                    nameTextView.setTextColor( getResources().getColor( R.color.BlackColor) );
-                                    nameTextView.setTextSize( 15 );
-                                    nameTextView.setGravity( Gravity.LEFT );
 
-                                    nameTextView.setText( c.getStud_name() + "   " +abc );
-
-                                    linearLayout.addView( nameTextView );
                                     Toast.makeText( ResultPage.this, c.getStud_name()+" added", Toast.LENGTH_SHORT ).show( );
 
 
@@ -164,6 +182,8 @@ public class ResultPage extends AppCompatActivity {
 
                                     // cand_list.add( c );
                                 }
+
+                                temp.add("abc");
 
 
                                 //desplay post details
@@ -195,6 +215,8 @@ public class ResultPage extends AppCompatActivity {
                 }
             } );
         }
+
+
     }
 
 
@@ -223,6 +245,5 @@ public class ResultPage extends AppCompatActivity {
 //        } );
 //        return abc;
 //    }
-
 
 }

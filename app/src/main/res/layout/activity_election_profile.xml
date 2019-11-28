@@ -71,9 +71,37 @@
 
                 </TextView>
 
-
-
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/TV_countDown_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimaryDark"
+                android:gravity="right"
+                style="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                >
+
+            </TextView>
+
+            <Button
+                android:id="@+id/adminResultButton_id"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="Result"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/RedColor"
+                android:layout_marginTop="3dp"
+                android:visibility="invisible"
+
+                >
+
+            </Button>
 
             <ListView
                 android:id="@+id/post_listview_id"

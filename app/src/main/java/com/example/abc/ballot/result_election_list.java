@@ -22,7 +22,7 @@ public class result_election_list extends AppCompatActivity {
     ListView ElectionListView;
     List<election> elelist2;
     election obj2;
-    String dept,uid;
+    String dept;
 
     DatabaseReference elections_reff;
 
@@ -30,7 +30,7 @@ public class result_election_list extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_result_election_list );
         dept=getIntent().getExtras().getString("dept");
-        uid=getIntent().getExtras().getString( "uid" );
+        //uid=getIntent().getExtras().getString( "uid" );
 
         ElectionListView  = findViewById( R.id.ListView2 );
         elelist2=new ArrayList<>();
@@ -45,7 +45,7 @@ public class result_election_list extends AppCompatActivity {
                 Intent intent = new Intent( getApplicationContext(), ResultPage.class );
                 intent.putExtra( "poss" , i);
                 intent.putExtra( "dept" ,dept);
-                intent.putExtra("uid",uid);
+               // intent.putExtra("uid",uid);
                 intent.putExtra( "election_ID",elelist2.get( i ).getElection_id() );
 
                 startActivity( intent);

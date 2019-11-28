@@ -42,6 +42,8 @@ public class ElectionList extends Fragment {
     ListView electionListView;
     List<election> electionList;
 
+    String DEPT, election_ID;
+
 
     @Nullable
     @Override
@@ -101,9 +103,13 @@ public class ElectionList extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent intent = new Intent( getContext(),Election_profile.class );
-
-
+                intent.putExtra("uid","123");
+                intent.putExtra("poss",position);
+                intent.putExtra("mydept",dep);
                 startActivity( intent);
+
+
+
             }
         });
 
