@@ -37,11 +37,12 @@ public class Add_ElectionFragment extends Fragment {
 private TimePickerDialog time;
 Button btn_set_time;
 
+
     Button btn_set_date;
     EditText start_uid, end_uid;
 
     String checked_class = "None";
-    String fromUID,toUID;
+    String fromUID,toUID,title;
 
     String dept;
 
@@ -135,18 +136,26 @@ Button btn_set_time;
             public void onClick(View view) {
                 fromUID = start_uid.getText().toString().trim();
                 toUID = end_uid.getText().toString().trim();
+                title = election_title.getText().toString().trim();
+
+                if(checked_class.equals( "None" )|| title.length()<=0 || fromUID.length()<=0|| toUID.length()<=0 || E_time.equals( "None")||E_date.equals( "None" ))                {
+                    Toast.makeText(getContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent i = new Intent(getActivity(),AddPost.class);
+                    i.putExtra("title",election_title.getText().toString());
+                    i.putExtra("class_name",checked_class);
+                    i.putExtra("from",fromUID);
+                    i.putExtra("to",toUID);
+                    i.putExtra("dept_name",dept);
+                    i.putExtra( "e_date",E_date );
+                    i.putExtra( "e_time",E_time );
+                    startActivity(i);
+                }
 
 
-                Intent i = new Intent(getActivity(),AddPost.class);
-                i.putExtra("title",election_title.getText().toString());
-                i.putExtra("class_name",checked_class);
-                i.putExtra("from",fromUID);
-                i.putExtra("to",toUID);
-                i.putExtra("dept_name",dept);
-                i.putExtra( "e_date",E_date );
-                i.putExtra( "e_time",E_time );
-                startActivity(i);
             }
+
         });
 
 

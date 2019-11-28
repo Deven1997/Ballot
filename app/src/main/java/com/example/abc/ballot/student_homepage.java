@@ -59,7 +59,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         setContentView(R.layout.activity_student_homepage);
 
         Toolbar toolbar = findViewById(R.id.stud_homepage_toolbar_id);
-        setSupportActionBar(toolbar);
+       // setSupportActionBar(toolbar);
 
         /* get values from login activity*/
         String name = getIntent().getExtras().getString("name");
@@ -151,7 +151,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
         switch (item.getItemId())
         {
             case R.id.uploadImage_id:
-                Toast.makeText(this, "Upload your profile ", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(this, "Upload your profile ", Toast.LENGTH_SHORT).show();
                 profilePhoto.setOnClickListener( new View.OnClickListener( ) {
                     @Override
                     public void onClick(View view) {
@@ -159,6 +159,7 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
                         GetImageFromGallery();
                     }
                 } );
+                Toast.makeText( student_homepage.this, "Profile photo updated...", Toast.LENGTH_SHORT ).show( );
 
                 break;
             case R.id.changepass_id:

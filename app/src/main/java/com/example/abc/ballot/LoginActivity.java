@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
     String myid,mypassword;
     String myname,myuid;
-    String abcdef;
+
     // Hello github
 
     ProgressDialog progress;
@@ -48,8 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         progress.setCancelable(true);
         progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
-
-
         input_id = findViewById(R.id.user_id);
         input_pass =  findViewById(R.id.password_id);
         if (!amIConnected())
@@ -59,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
             btn_login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!amIConnected())
+                   if(!amIConnected())
                     {
                         displayInternetConnectivityToast();
                     }

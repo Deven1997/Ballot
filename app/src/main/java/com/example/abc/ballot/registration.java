@@ -99,7 +99,7 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         selected_department = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), "You have selected "+selected_department+" department", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(parent.getContext(), "You have selected "+selected_department+" department", Toast.LENGTH_SHORT).show();
     }
 
     @Override
