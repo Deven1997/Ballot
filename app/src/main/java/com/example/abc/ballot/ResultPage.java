@@ -173,27 +173,9 @@ public class ResultPage extends AppCompatActivity {
                                         }
                                     } );
 
-
-                                    // int countresult = getCount(c.getPname(),c.getUid());
-
-
-
-
-                                    Toast.makeText( ResultPage.this, c.getStud_name()+" added", Toast.LENGTH_SHORT ).show( );
-
-
-
-
-                                    // cand_list.add( c );
                                 }
 
                                 temp.add("abc");
-
-
-                                //desplay post details
-
-
-
 
                             }
 
@@ -204,11 +186,6 @@ public class ResultPage extends AppCompatActivity {
                         } );
 
                     }
-                    else
-                    {
-                        Toast.makeText( ResultPage.this, pname+" Not matched", Toast.LENGTH_SHORT ).show( );
-                    }
-
 
 
                 }
@@ -219,11 +196,6 @@ public class ResultPage extends AppCompatActivity {
                 }
             } );
 
-
-
     }
-
-
-
 
 }
