@@ -119,9 +119,15 @@ public class student_homepage extends AppCompatActivity implements NavigationVie
                 elelist.clear();
                 for(DataSnapshot electsnap: dataSnapshot.getChildren()){
                     election e=electsnap.getValue(election.class);
-                    elelist.add(e);
-                    election_listview_adapter adapter=new election_listview_adapter(student_homepage.this,elelist);
-                    ElectionlistView.setAdapter(adapter);
+
+                    if(Integer.parseInt(uid)>=Integer.parseInt(e.getRange_from()) && Integer.parseInt(uid)<=Integer.parseInt(e.getRange_to()))
+                    {
+                        elelist.add(e);
+
+                        election_listview_adapter adapter=new election_listview_adapter(student_homepage.this,elelist);
+                        ElectionlistView.setAdapter(adapter);
+                    }
+
 
                 }
             }

@@ -48,10 +48,12 @@ public class ResultPage extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_page);
+
 
         dept = getIntent().getExtras().getString( "dept" );
         // ucid = getIntent().getExtras().getString( "uid" );
@@ -83,8 +85,18 @@ public class ResultPage extends AppCompatActivity {
                 }
 
 
-                getData();
+                for(final String pname:postNames)
+                {
+                    final TextView postTextView = new TextView(ResultPage.this);
+                    postTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    postTextView.setTextSize(25);
+                    postTextView.setGravity(Gravity.CENTER);
+                    postTextView.setTypeface(Typeface.DEFAULT_BOLD);
+                    postTextView.setText(pname);
+                    linearLayout.addView(postTextView);
 
+                    getData(pname);
+                }
 
 
 
@@ -101,11 +113,9 @@ public class ResultPage extends AppCompatActivity {
 
 
 
-    void getData()
+    void getData(final String pname)
     {
 
-        for(final String pname:postNames)
-        {
             candiReff = FirebaseDatabase.getInstance().getReference().child( "candidate" ).child( election_ID );
             candiReff.addValueEventListener( new ValueEventListener( ) {
                 @Override
@@ -120,19 +130,13 @@ public class ResultPage extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 cand_list.clear();
 
-                                final TextView postTextView = new TextView(ResultPage.this);
-                                postTextView.setTextColor( getResources().getColor( R.color.colorPrimaryDark) );
-                                postTextView.setTextSize( 25 );
-                                postTextView.setGravity( Gravity.CENTER );
-                                postTextView.setTypeface( Typeface.DEFAULT_BOLD );
-                                postTextView.setText( pname );
-
-                                linearLayout.addView( postTextView );
 
 
                                // Toast.makeText( ResultPage.this, pname+" added", Toast.LENGTH_SHORT ).show( );
                                 for(DataSnapshot candi:dataSnapshot.getChildren())
                                 {
+
+
 
                                     candidate c = candi.getValue(candidate.class);
                                     final String cadnameee = c.getStud_name();
@@ -214,36 +218,12 @@ public class ResultPage extends AppCompatActivity {
 
                 }
             } );
-        }
+
 
 
     }
 
 
-//    int getCount(String pname,String cUID)
-//    {
-//        Toast.makeText( this, pname+"  "+cUID, Toast.LENGTH_SHORT ).show( );
-//        abc = 0;
-//        DatabaseReference resultReff = FirebaseDatabase.getInstance().getReference().child( "result" ).child( election_ID ).child( pname ).child( cUID );
-//
-//
-//
-//        resultReff.addValueEventListener( new ValueEventListener( ) {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                Log.e( "datachange",""+dataSnapshot.getChildrenCount());
-//
-//                abc =(int) dataSnapshot.getChildrenCount();
-//
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        } );
-//        return abc;
-//    }
+
 
 }

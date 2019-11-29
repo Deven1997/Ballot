@@ -210,8 +210,9 @@ public class registration extends AppCompatActivity implements AdapterView.OnIte
                     }else
                     {
                         databasestudent.child(ucid).setValue(student);
-                        Toast.makeText(registration.this, "Information Saved...", Toast.LENGTH_SHORT).show();
+
                         Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                        Toast.makeText(registration.this, "Information Saved...", Toast.LENGTH_SHORT).show();
                         startActivity(i);
                     }
 

@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class StartPage extends AppCompatActivity {
 
     Button studentbtn, teacherbtn;
-    TextView superadmin;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class StartPage extends AppCompatActivity {
 
         studentbtn = findViewById(R.id.student_btn);
         teacherbtn = findViewById(R.id.teacher_btn);
-        superadmin = findViewById(R.id.super_admin_txt);
+
 
         studentbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,12 +38,12 @@ public class StartPage extends AppCompatActivity {
             }
         });
 
-        superadmin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(i);
-            }
-        });
+//        superadmin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+//                startActivity(i);
+//            }
+//        });
     }
 }

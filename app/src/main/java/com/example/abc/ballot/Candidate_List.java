@@ -91,13 +91,38 @@ public class Candidate_List extends AppCompatActivity implements SelectCandidate
         int id = item.getItemId();
         if(id == R.id.apply_for_post_ID)
         {
-            Intent intent = new Intent(getApplicationContext(),candidate_data.class);
-            intent.putExtra( "dept",dept );
-            intent.putExtra( "electionID",electionID );
-            intent.putExtra( "position",post_position );
-            intent.putExtra("election_position",election_position);
-            intent.putExtra("uid",uid);
-            startActivity(intent);
+            try {
+                if(checktime(edate,etime))
+                {
+                    Toast.makeText(this, "Election Started.. You can not apply now", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    int fl  = 0;
+                    for(candidate c:candi_list)
+                    {
+                        if(c.getUid().equals(uid))
+                        {
+                            Toast.makeText(this, "Already applied for this post", Toast.LENGTH_SHORT).show();
+                            fl = 1;
+                        }
+                    }
+                    if(fl==0)
+                    {
+                        Intent intent = new Intent(getApplicationContext(),candidate_data.class);
+                        intent.putExtra( "dept",dept );
+                        intent.putExtra( "electionID",electionID );
+                        intent.putExtra( "position",post_position );
+                        intent.putExtra("election_position",election_position);
+                        intent.putExtra("uid",uid);
+                        startActivity(intent);
+                    }
+
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
         }
         return super.onOptionsItemSelected( item );
     }
@@ -248,6 +273,7 @@ public class Candidate_List extends AppCompatActivity implements SelectCandidate
                     try {
                         if(checktime(edate,etime))
                         {
+
                             for(candidate c: candi_list)
                             {
                                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("result").child(electionID).child(pname).child(c.getUid());
@@ -388,9 +414,20 @@ public class Candidate_List extends AppCompatActivity implements SelectCandidate
 
         if(cmonth>=emonth && cdate>=edate)
         {
-            if(ehrs<=chrs && emins<= cmins)
+            if(ehrs<=chrs )
             {
-                status = true;
+                if(ehrs==chrs)
+                {
+                    if( emins<= cmins)
+                        status = true;
+                    else
+                        status = false;
+                }
+                else
+                {
+                    status = true;
+
+                }
             }
             if(cmonth>emonth && cdate>edate)
             {

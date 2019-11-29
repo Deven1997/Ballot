@@ -56,6 +56,9 @@ public class Election_profile extends AppCompatActivity {
     TextView counterTV;
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -179,26 +182,7 @@ public class Election_profile extends AppCompatActivity {
                     adminResultBtn.setVisibility(View.VISIBLE);
                 }
 
-                try
-                {
 
-                    new CountDownTimer(checktime(edate, etime), 1000) {
-
-                        public void onTick(long millisUntilFinished) {
-                            counterTV.setText(String.format(Locale.getDefault(), "Election Starts in %02d min: %02d sec",
-                                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
-                                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60));
-                        }
-
-                        public void onFinish() {
-                            counterTV.setText("done!");
-                        }
-                    }.start();
-
-                }catch (Exception e)
-                {
-
-                }
 
                 postList.clear();
                 for(DataSnapshot electsnap: dataSnapshot.getChildren()){
@@ -309,4 +293,23 @@ public class Election_profile extends AppCompatActivity {
         return remainingTIME;
 
     }
+
+//    void TIMER(double t) {
+//
+//        new CountDownTimer(70000, etime), 1000) {
+//
+//            public void onTick(long millisUntilFinished) {
+//                counterTV.setText(String.format(Locale.getDefault(), "Election Starts in %02d min: %02d sec",
+//                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) % 60,
+//                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) % 60));
+//            }
+//
+//            public void onFinish() {
+//                counterTV.setText("done!");
+//            }
+//        }.start();
+
+//    }
+
+
 }
